@@ -12,14 +12,14 @@ namespace RustVognKalender
 
         public bool CreateEventType(bool resavation, string start,string end, string address,string coment)
         {
-            return DC.CreateEvent(resavation, start, end, address, coment);
+            return DC.CreateEvent(start, end, resavation, address, coment);
         }
         public bool AlterEvent( string key, bool resavation, string start, string end, string address, string coment)
         {
             int ikey;
             if (int.TryParse(key,out ikey))
             {
-                return DC.AlterEvent(ikey, resavation, start, end, address, coment);
+                return DC.AlterEvent(ikey, start, end, resavation, address, coment);
             }
             else
             {
