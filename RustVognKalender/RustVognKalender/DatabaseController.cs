@@ -18,12 +18,12 @@ namespace RustVognKalender
             reader.Close();
         }
 
-        public bool CreateEvent(DateTime start, DateTime end, string Address, string Comment)
+        public bool CreateEvent(bool resavation, DateTime start, DateTime end, string Address, string Comment)
         {
             throw new NotImplementedException();
         }
         
-        public bool AlterEvent(int PrimaryKey, string start = null, string end = null, string Address = null, string Comment = null)
+        public bool AlterEvent(int PrimaryKey, bool resavation, string start = null, string end = null, string Address = null, string Comment = null)
         {
             Convert.ToDateTime(start);
             throw new NotImplementedException();
