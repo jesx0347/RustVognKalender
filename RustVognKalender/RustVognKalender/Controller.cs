@@ -6,19 +6,33 @@ using System.Threading.Tasks;
 
 namespace RustVognKalender
 {
-    class Controller
+    public class Controller
     {
+        DatabaseController DC = new DatabaseController();
+
         public bool CreateEventType(bool resavation, string start,string end, string address,string coment)
         {
-            throw new NotImplementedException();
+            return DC.CreateEvent(resavation, start, end, address, coment);
         }
-        public bool AlterEvent(bool resavation, string key, string start, string end, string address, string coment)
+        public bool AlterEvent( string key, bool resavation, string start, string end, string address, string coment)
         {
-            throw new NotImplementedException();
+            int ikey;
+            if (int.TryParse(key,out ikey))
+            {
+                return DC.AlterEvent(ikey, resavation, start, end, address, coment);
+            }
+            else
+            {
+                //Console.WriteLine("invalid key");
+                return false;
+            }
+            
         }
         public bool DeleteEvent(string key)
         {
-            throw new NotImplementedException();
+
+            return DC.DeleteEvent(key);
+            
         }
     }
 }
