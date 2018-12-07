@@ -12,13 +12,28 @@ namespace RustVognKalender
 
         public bool CreateEventType(bool resavation, string start,string end, string address,string coment)
         {
-            return DC.CreateEvent(start, end, resavation, address, coment);
+            DateTime tend;
+            DateTime tstart;
+            if (!DateTime.TryParse(start, out tstart))
+            {
+                return false;
+            }
+            if (!DateTime.TryParse(end, out tend))
+            {
+                return false;
+            }
+
+            return DC.CreateEvent(tstart, tend, resavation, address, coment);
         }
         public bool AlterEvent( string key, bool resavation, string start, string end, string address, string coment)
         {
             int ikey;
             if (int.TryParse(key,out ikey))
             {
+                if(start == "") { start = null; }
+                if (end == "") { end = null; }
+                if (address == "") { address = null; }
+                if (coment == "") { coment = null; }
                 return DC.AlterEvent(ikey, start, end, resavation, address, coment);
             }
             else
@@ -30,9 +45,16 @@ namespace RustVognKalender
         }
         public bool DeleteEvent(string key)
         {
-
-            return DC.DeleteEvent(key);
-            
+            int ikey;
+            if (int.TryParse(key, out ikey))
+            {
+                return DC.DeleteEvent(ikey);
+            }
+            else
+            {
+                //Console.WriteLine("invalid key");
+                return false;
+            }
         }
     }
 }

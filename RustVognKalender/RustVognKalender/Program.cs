@@ -7,9 +7,10 @@ namespace Console_Menu
     class Program
     {
         private static int index = 0;
-
+        
         private static void Main(string[] args)
         {
+            Controller c = new Controller();
             // Create a list of menu items
             List<string> menuItems = new List<string>() {
                 "Opret Booking",
@@ -29,24 +30,69 @@ namespace Console_Menu
                 string selectedMenuItem = drawMenu(menuItems);
                 if (selectedMenuItem == "Opret Booking")
                 {
-                    // Call CreateEvent method
+                    bool resavation; 
+                    Console.WriteLine("vælg starttidspunkt [dd-mm-yy hh:mm]");
+                    string start = Console.ReadLine();
+                    Console.WriteLine("vælg sluttidspunkt [dd-mm-yy hh:mm]");
+                    string end = Console.ReadLine();
+                    Console.WriteLine("skal en rustvogn resaveres [y/n]");
+                    resavation = BooleanChoice();
+                    Console.WriteLine("skriv adreesse");
+                    string address = Console.ReadLine();
+                    Console.WriteLine("skriv kommentar");
+                    string coment = Console.ReadLine();
+                    c.CreateEventType(resavation,start,end,address,coment);
                 }
                 else if (selectedMenuItem == "Rediger Booking")
                 {
-                    // Call AlterEvent method 
+                    bool resavation;
+                    Console.WriteLine("skriv key");
+                    string key = Console.ReadLine();
+                    Console.WriteLine("vælg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
+                    string start = Console.ReadLine();
+                    Console.WriteLine("vælg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
+                    string end = Console.ReadLine();
+                    Console.WriteLine("skal en rustvogn resaveres [y/n], input er desvære nødvendigt her");
+                    resavation = BooleanChoice();
+                    Console.WriteLine("skriv adreesse, eller efterlad tom for ingen endring");
+                    string address = Console.ReadLine();
+                    Console.WriteLine("skriv kommentar, eller efterlad tom for ingen endring");
+                    string coment = Console.ReadLine();
+                    c.AlterEvent(key, resavation, start, end, address, coment);
 
                 }
                 else if (selectedMenuItem == "Slet Booking")
                 {
-                    // Call DeleteEvent method
+                    Console.WriteLine("skriv key");
+                    string key = Console.ReadLine();
+                    c.DeleteEvent(key);
                 }
                 else if (selectedMenuItem == "Afslut program")
                 {
                     Environment.Exit(0);
                 }
             }
-        }
+            bool BooleanChoice()
+            {
+                string input = Console.ReadLine();
+                if (input == "y")
+                {
+                    return true;
+                }
+                else if (input == "n")
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("skriv y eller n");
+                    bool ans = BooleanChoice();
+                    return ans;
+                }
 
+            }
+        }
+        
 
 
 
@@ -105,7 +151,7 @@ namespace Console_Menu
                 return "";
             }
 
-
+            
 
 
 
