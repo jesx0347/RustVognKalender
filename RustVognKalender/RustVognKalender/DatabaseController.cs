@@ -115,7 +115,7 @@ namespace RustVognKalender
                 }
                 plates.Close();
             }
-            throw new Exception("no vehicle availlable");
+            throw new Exception("Ingen rustvogn ledig");
         }
     }
 }
