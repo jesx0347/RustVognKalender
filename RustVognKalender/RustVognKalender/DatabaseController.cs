@@ -45,16 +45,41 @@ namespace RustVognKalender
         
         public bool AlterEvent(int PrimaryKey, string start = null, string end = null, bool reservation = false, string Address = null, string Comment = null)
         {
-            Convert.ToDateTime(start);
-            throw new NotImplementedException();
+            string plate = null;
+            if (reservation)
+            {
+                plate = FreeHearse(DateTime.Parse(start), DateTime.Parse(end));
+            }
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "EXEC update_event @KEY @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
+                command.Parameters.AddWithValue("@KEY", PrimaryKey);
+                command.Parameters.AddWithValue("@START_AT", DateTime.Parse(start));
+                command.Parameters.AddWithValue("@END_AT", DateTime.Parse(end));
+                command.Parameters.AddWithValue("@VEHICLE", plate);
+                command.Parameters.AddWithValue("@AT_ADDRESS", Address);
+                command.Parameters.AddWithValue("@COMMENT", Comment);
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            return true;
         }
 
         public bool DeleteEvent(string key)
         {
-
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "EXEC delete_event @KEY";
+                command.Parameters.AddWithValue("@KEY", key);
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            return true;
         }
-
         private string FreeHearse(DateTime start, DateTime end)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
