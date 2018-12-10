@@ -1,1 +1,1 @@
-﻿
+﻿Server=EALSQL1.eal.local;  Database=;   User Id=;   Password=;

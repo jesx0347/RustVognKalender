@@ -57,8 +57,8 @@ namespace Console_Menu
                     Console.WriteLine("Skriv adreesse, eller efterlad tom for ingen endring");
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen endring");
-                    string coment = Console.ReadLine();
-                    c.AlterEvent(key, reservation, start, end, address, coment);
+                    string comment = Console.ReadLine();
+                    c.AlterEvent(key, reservation, start, end, address, comment);
 
                 }
                 else if (selectedMenuItem == "Slet Booking")
@@ -117,6 +117,7 @@ namespace Console_Menu
                     Console.ForegroundColor = ConsoleColor.Black;
 
                     Console.WriteLine(items[i]);
+
                 }
                 else
                 {
