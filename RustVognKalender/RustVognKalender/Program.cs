@@ -27,7 +27,7 @@ namespace Console_Menu
             Console.CursorVisible = false;
             while (true)
             {
-                string selectedMenuItem = drawMenu(menuItems);
+                string selectedMenuItem = DrawMenu(menuItems);
                 if (selectedMenuItem == "Opret Booking")
                 {
                     bool reservation; 
@@ -106,7 +106,7 @@ namespace Console_Menu
 
 
 
-        private static string drawMenu(List<string> items)
+        private static string DrawMenu(List<string> items)
         {
             // for loop, for counting the items in the list
             for (int i = 0; i < items.Count; i++)
