@@ -10,7 +10,7 @@ namespace RustVognKalender
     {
         DatabaseController DC = new DatabaseController();
 
-        public bool CreateEventType(bool resavation, string start,string end, string address,string coment)
+        public bool CreateEventType(bool reservation, string start,string end, string address,string coment)
         {
             DateTime tend;
             DateTime tstart;
@@ -23,7 +23,7 @@ namespace RustVognKalender
                 return false;
             }
 
-            return DC.CreateEvent(tstart, tend, resavation, address, coment);
+            return DC.CreateEvent(tstart, tend, reservation, address, coment);
         }
         public bool AlterEvent( string key, bool resavation, string start, string end, string address, string coment)
         {
@@ -38,7 +38,7 @@ namespace RustVognKalender
             }
             else
             {
-                //Console.WriteLine("invalid key");
+                //Console.WriteLine("Invalid nøgle");
                 return false;
             }
             
@@ -52,7 +52,7 @@ namespace RustVognKalender
             }
             else
             {
-                //Console.WriteLine("invalid key");
+                //Console.WriteLine("Invalid nøgle");
                 return false;
             }
         }
