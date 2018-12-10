@@ -25,7 +25,7 @@ namespace RustVognKalender
 
             return DC.CreateEvent(tstart, tend, reservation, address, comment);
         }
-        public bool AlterEvent( string key, bool resavation, string start, string end, string address, string comment)
+        public bool AlterEvent( string key, bool reservation, string start, string end, string address, string comment)
         {
             int ikey;
             if (int.TryParse(key,out ikey))
@@ -34,7 +34,7 @@ namespace RustVognKalender
                 if (end == "") { end = null; }
                 if (address == "") { address = null; }
                 if (comment == "") { comment = null; }
-                return DC.AlterEvent(ikey, start, end, resavation, address, comment);
+                return DC.AlterEvent(ikey, start, end, reservation, address, comment);
             }
             else
             {
