@@ -15,7 +15,7 @@ namespace RustVognKalender
 
         public DatabaseController()
         {
-            StreamReader reader = new StreamReader(@"\..\..\ConnectionString.txt");
+            StreamReader reader = new StreamReader(@"C:\Users\bakan\OneDrive\Dokumenter\Datamatiker\Getting Real\c# ting\RustVognKalender\RustVognKalender\RustVognKalender\ConnectionString.txt");
             ConnectionString = reader.ReadLine();
             reader.Close();
         }
@@ -84,7 +84,8 @@ namespace RustVognKalender
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("EXEC get_hearse", connection);
+                SqlCommand command = new SqlCommand("EXEC GET_HEARSE", connection);
+                connection.Open();
                 SqlDataReader plates = command.ExecuteReader();
 
                 command.CommandText = "EXEC free_at @PLATE";
