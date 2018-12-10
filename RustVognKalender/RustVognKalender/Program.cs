@@ -27,43 +27,43 @@ namespace Console_Menu
             Console.CursorVisible = false;
             while (true)
             {
-                string selectedMenuItem = drawMenu(menuItems);
+                string selectedMenuItem = DrawMenu(menuItems);
                 if (selectedMenuItem == "Opret Booking")
                 {
-                    bool resavation; 
-                    Console.WriteLine("vælg starttidspunkt [dd-mm-yy hh:mm]");
+                    bool reservation; 
+                    Console.WriteLine("Vælg starttidspunkt [dd-mm-yy hh:mm]");
                     string start = Console.ReadLine();
-                    Console.WriteLine("vælg sluttidspunkt [dd-mm-yy hh:mm]");
+                    Console.WriteLine("Vælg sluttidspunkt [dd-mm-yy hh:mm]");
                     string end = Console.ReadLine();
-                    Console.WriteLine("skal en rustvogn resaveres [y/n]");
-                    resavation = BooleanChoice();
-                    Console.WriteLine("skriv adreesse");
+                    Console.WriteLine("Skal en rustvogn reserveres? [J/N]");
+                    reservation = BooleanChoice();
+                    Console.WriteLine("Skriv adreesse");
                     string address = Console.ReadLine();
-                    Console.WriteLine("skriv kommentar");
-                    string coment = Console.ReadLine();
-                    c.CreateEventType(resavation,start,end,address,coment);
+                    Console.WriteLine("Skriv kommentar");
+                    string comment = Console.ReadLine();
+                    c.CreateEventType(reservation,start,end,address,comment);
                 }
                 else if (selectedMenuItem == "Rediger Booking")
                 {
-                    bool resavation;
-                    Console.WriteLine("skriv key");
+                    bool reservation;
+                    Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
-                    Console.WriteLine("vælg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
+                    Console.WriteLine("Vælg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
                     string start = Console.ReadLine();
-                    Console.WriteLine("vælg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
+                    Console.WriteLine("Vælg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
                     string end = Console.ReadLine();
-                    Console.WriteLine("skal en rustvogn resaveres [y/n], input er desvære nødvendigt her");
-                    resavation = BooleanChoice();
-                    Console.WriteLine("skriv adreesse, eller efterlad tom for ingen endring");
+                    Console.WriteLine("Skal en rustvogn reserveres? [J/N], input er desvære nødvendigt her");
+                    reservation = BooleanChoice();
+                    Console.WriteLine("Skriv adreesse, eller efterlad tom for ingen endring");
                     string address = Console.ReadLine();
-                    Console.WriteLine("skriv kommentar, eller efterlad tom for ingen endring");
-                    string coment = Console.ReadLine();
-                    c.AlterEvent(key, resavation, start, end, address, coment);
+                    Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen endring");
+                    string comment = Console.ReadLine();
+                    c.AlterEvent(key, reservation, start, end, address, comment);
 
                 }
                 else if (selectedMenuItem == "Slet Booking")
                 {
-                    Console.WriteLine("skriv key");
+                    Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
                     c.DeleteEvent(key);
                 }
@@ -75,9 +75,17 @@ namespace Console_Menu
             bool BooleanChoice()
             {
                 string input = Console.ReadLine();
-                if (input == "y")
+                if (input == "J")
                 {
                     return true;
+                }
+                else if (input == "j")
+                {
+                    return true;
+                }
+                else if (input == "N")
+                {
+                    return false;
                 }
                 else if (input == "n")
                 {
@@ -85,7 +93,7 @@ namespace Console_Menu
                 }
                 else
                 {
-                    Console.WriteLine("skriv y eller n");
+                    Console.WriteLine("J/N");
                     bool ans = BooleanChoice();
                     return ans;
                 }
@@ -98,7 +106,7 @@ namespace Console_Menu
 
 
 
-        private static string drawMenu(List<string> items)
+        private static string DrawMenu(List<string> items)
         {
             // for loop, for counting the items in the list
             for (int i = 0; i < items.Count; i++)
@@ -109,6 +117,7 @@ namespace Console_Menu
                     Console.ForegroundColor = ConsoleColor.Black;
 
                     Console.WriteLine(items[i]);
+
                 }
                 else
                 {

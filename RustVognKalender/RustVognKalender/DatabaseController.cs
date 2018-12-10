@@ -11,7 +11,7 @@ namespace RustVognKalender
 {
     public class DatabaseController
     {
-        private string ConnectionString;
+        private readonly string ConnectionString;
 
         public DatabaseController()
         {
