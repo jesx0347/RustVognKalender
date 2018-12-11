@@ -30,7 +30,7 @@ namespace RustVognKalender
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "EXEC insert_event @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
+                command.CommandText = "EXEC dbo.insert_event @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
                 command.Parameters.AddWithValue("@START_AT", start);
                 command.Parameters.AddWithValue("@END_AT", end);
                 command.Parameters.AddWithValue("@VEHICLE", plate);
@@ -53,7 +53,7 @@ namespace RustVognKalender
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "EXEC update_event @KEY @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
+                command.CommandText = "EXEC dbo.update_event @KEY @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
                 command.Parameters.AddWithValue("@KEY", PrimaryKey);
                 command.Parameters.AddWithValue("@START_AT", DateTime.Parse(start));
                 command.Parameters.AddWithValue("@END_AT", DateTime.Parse(end));
@@ -72,7 +72,7 @@ namespace RustVognKalender
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "EXEC delete_event @KEY";
+                command.CommandText = "EXEC dbo.delete_event @KEY";
                 command.Parameters.AddWithValue("@KEY", key);
                 command.Connection = connection;
                 connection.Open();
@@ -84,16 +84,21 @@ namespace RustVognKalender
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("EXEC GET_HEARSE", connection);
+                SqlCommand command = new SqlCommand("EXEC dbo.GET_HEARSE", connection);
                 connection.Open();
                 SqlDataReader plates = command.ExecuteReader();
-
-                command.CommandText = "EXEC free_at @PLATE";
-                SqlDataReader times;
-
+                List<string> plateStrings = new List<string>();
                 while (plates.Read())
                 {
-                    string item = (string)plates[0];
+                    plateStrings.Add((string)plates[0]);
+                }
+                plates.Close();
+
+                command.CommandText = "EXEC dbo.free_at @PLATE";
+                SqlDataReader times;
+
+                foreach (string item in plateStrings)
+                {
                     command.Parameters.AddWithValue("@PLATE", item);
                     times = command.ExecuteReader();
                     bool isFree = true;
@@ -109,7 +114,6 @@ namespace RustVognKalender
                     times.Close();
                     if (isFree)
                     {
-                        plates.Close();
                         return item;
                     }
                     command.Parameters.Clear();
