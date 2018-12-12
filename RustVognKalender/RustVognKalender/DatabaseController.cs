@@ -34,7 +34,7 @@ namespace RustVognKalender
                 command.CommandText = "EXEC dbo.insert_event @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
                 command.Parameters.AddWithValue("@START_AT", start);
                 command.Parameters.AddWithValue("@END_AT", end);
-                command.Parameters.AddWithValue("@VEHICLE", plate);
+                command.Parameters.AddWithValue("@VEHICLE", int.Parse(plate));
                 command.Parameters.AddWithValue("@AT_ADDRESS", Address);
                 command.Parameters.AddWithValue("@COMMENT", Comment);
                 command.Connection = connection;
@@ -58,7 +58,7 @@ namespace RustVognKalender
                 command.Parameters.AddWithValue("@KEY", PrimaryKey);
                 command.Parameters.AddWithValue("@START_AT", DateTime.Parse(start));
                 command.Parameters.AddWithValue("@END_AT", DateTime.Parse(end));
-                command.Parameters.AddWithValue("@VEHICLE", plate);
+                command.Parameters.AddWithValue("@VEHICLE", int.Parse(plate));
                 command.Parameters.AddWithValue("@AT_ADDRESS", Address);
                 command.Parameters.AddWithValue("@COMMENT", Comment);
                 command.Connection = connection;
@@ -87,20 +87,20 @@ namespace RustVognKalender
             {
                 SqlCommand command = new SqlCommand("EXEC dbo.GET_HEARSE", connection);
                 connection.Open();
-                SqlDataReader plates = command.ExecuteReader();
-                List<string> plateStrings = new List<string>();
-                while (plates.Read())
+                SqlDataReader HearseID = command.ExecuteReader();
+                List<int> plateStrings = new List<int>();
+                while (HearseID.Read())
                 {
-                    plateStrings.Add((string)plates[0]);
+                    plateStrings.Add((int)HearseID[0]);
                 }
-                plates.Close();
+                HearseID.Close();
 
-                command.CommandText = "EXEC dbo.free_at @PLATE";
+                command.CommandText = "EXEC dbo.free_at @PRIORITY_";
                 SqlDataReader times;
 
-                foreach (string item in plateStrings)
+                foreach (int item in plateStrings)
                 {
-                    command.Parameters.AddWithValue("@PLATE", item);
+                    command.Parameters.AddWithValue("@PRIORITY_", item);
                     times = command.ExecuteReader();
                     bool isFree = true;
                     while (times.Read())
@@ -116,13 +116,12 @@ namespace RustVognKalender
                     times.Close();
                     if (isFree)
                     {
-                        return item;
+                        return item.ToString();
                     }
                     command.Parameters.Clear();
                 }
-                plates.Close();
             }
-            throw new Exception("Ingen rustvogn ledig");
+            throw new FileNotFoundException("Ingen rustvogn ledig");
         }
     }
 }
