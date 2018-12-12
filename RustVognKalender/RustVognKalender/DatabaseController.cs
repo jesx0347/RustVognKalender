@@ -15,6 +15,7 @@ namespace RustVognKalender
 
         public DatabaseController()
         {
+            //string tempsting = Path.GetFullPath("ConnectionString.txt");
             StreamReader reader = new StreamReader(@"..\..\ConnectionString.txt");
             ConnectionString = reader.ReadLine();
             reader.Close();
@@ -106,6 +107,7 @@ namespace RustVognKalender
                     {
                         DateTime startTime = (DateTime)times["START_AT"];
                         DateTime endTime = (DateTime)times["END_AT"];
+                        
                         if (!(start > endTime || end < startTime))
                         {
                             isFree = false;
