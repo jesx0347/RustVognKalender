@@ -15,7 +15,9 @@ namespace RustVognKalender
 
         public DatabaseController()
         {
-            StreamReader reader = new StreamReader(@"C:\Users\bakan\OneDrive\Dokumenter\Datamatiker\Getting Real\c# ting\RustVognKalender\RustVognKalender\RustVognKalender\ConnectionString.txt");
+            string filePath = System.IO.Path.GetFullPath("ConnectionString.txt");
+
+            StreamReader reader = new StreamReader(filePath);
             ConnectionString = reader.ReadLine();
             reader.Close();
         }

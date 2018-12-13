@@ -37,7 +37,7 @@ namespace Console_Menu
                     string end = Console.ReadLine();
                     Console.WriteLine("Skal en rustvogn reserveres? [J/N]");
                     reservation = BooleanChoice();
-                    Console.WriteLine("Skriv adreesse");
+                    Console.WriteLine("Skriv addresse");
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv kommentar");
                     string comment = Console.ReadLine();
@@ -48,15 +48,15 @@ namespace Console_Menu
                     bool reservation;
                     Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
-                    Console.WriteLine("Vælg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
+                    Console.WriteLine("Vælg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen ændring");
                     string start = Console.ReadLine();
-                    Console.WriteLine("Vælg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen endring");
+                    Console.WriteLine("Vælg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen ændring");
                     string end = Console.ReadLine();
                     Console.WriteLine("Skal en rustvogn reserveres? [J/N], input er desvære nødvendigt her");
                     reservation = BooleanChoice();
-                    Console.WriteLine("Skriv adreesse, eller efterlad tom for ingen endring");
+                    Console.WriteLine("Skriv addresse, eller efterlad tom for ingen ændring");
                     string address = Console.ReadLine();
-                    Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen endring");
+                    Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen ændring");
                     string comment = Console.ReadLine();
                     c.AlterEvent(key, reservation, start, end, address, comment);
 
