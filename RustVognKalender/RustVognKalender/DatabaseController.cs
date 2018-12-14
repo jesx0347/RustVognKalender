@@ -46,6 +46,16 @@ namespace RustVognKalender
         
         public bool AlterEvent(int PrimaryKey, string start = null, string end = null, bool reservation = false, string Address = null, string Comment = null)
         {
+            DateTime Dstart;
+            DateTime Dend;
+            if(!DateTime.TryParse(start,out Dstart)||start != null)
+            {
+                start = null;
+            }
+            if (!DateTime.TryParse(start, out Dend )||end != null)
+            {
+                end = null;
+            }
             string plate = null;
             if (reservation)
             {
@@ -56,8 +66,8 @@ namespace RustVognKalender
                 SqlCommand command = new SqlCommand();
                 command.CommandText = "EXEC dbo.update_event @KEY @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
                 command.Parameters.AddWithValue("@KEY", PrimaryKey);
-                command.Parameters.AddWithValue("@START_AT", DateTime.Parse(start));
-                command.Parameters.AddWithValue("@END_AT", DateTime.Parse(end));
+                command.Parameters.AddWithValue("@START_AT", start);
+                command.Parameters.AddWithValue("@END_AT",end);
                 command.Parameters.AddWithValue("@VEHICLE", int.Parse(plate));
                 command.Parameters.AddWithValue("@AT_ADDRESS", Address);
                 command.Parameters.AddWithValue("@COMMENT", Comment);
