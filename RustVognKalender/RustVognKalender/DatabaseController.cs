@@ -123,5 +123,14 @@ namespace RustVognKalender
             }
             throw new FileNotFoundException("Ingen rustvogn ledig");
         }
+
+        public List<Tuple<int,DateTime,DateTime,string, string, int>> StartUpEvents()
+        {
+            List<Tuple<int, DateTime, DateTime, string, string, int>> result = new List<Tuple<int, DateTime, DateTime, string, string, int>>();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+            }
+        }
     }
 }
