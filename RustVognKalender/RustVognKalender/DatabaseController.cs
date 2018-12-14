@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using EventLibary;
 using System.Threading.Tasks;
 
 namespace RustVognKalender
@@ -134,13 +135,25 @@ namespace RustVognKalender
             throw new FileNotFoundException("Ingen rustvogn ledig");
         }
 
-        public List<Tuple<int,DateTime,DateTime,string, string, int>> StartUpEvents()
+        public List<int> StartUpHearse()
         {
-            List<Tuple<int, DateTime, DateTime, string, string, int>> result = new List<Tuple<int, DateTime, DateTime, string, string, int>>();
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            List<int> result = new List<int>();
+            using(SqlConnection connection = new SqlConnection(ConnectionString))
             {
 
             }
+            return result;
+        }
+
+        public List<Tuple<int,DateTime,DateTime,string, string>> StartUpEvents()
+        {
+            List<Tuple<int, DateTime, DateTime, string, string>> result = new List<Tuple<int, DateTime, DateTime, string, string>>();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+
+            }
+            return result;
         }
     }
 }

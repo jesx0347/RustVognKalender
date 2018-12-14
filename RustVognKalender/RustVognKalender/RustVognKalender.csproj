@@ -55,5 +55,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventLibary\EventLibary.csproj">
+      <Project>{912cd565-59ba-4760-8146-497e5033a380}</Project>
+      <Name>EventLibary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
