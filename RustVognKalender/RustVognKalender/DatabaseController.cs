@@ -92,6 +92,9 @@ namespace RustVognKalender
             }
             return true;
         }
+
+
+        /*
         private string FreeHearse(DateTime start, DateTime end)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -134,24 +137,49 @@ namespace RustVognKalender
             }
             throw new FileNotFoundException("Ingen rustvogn ledig");
         }
+        */
+
+
 
         public List<int> StartUpHearse()
         {
             List<int> result = new List<int>();
             using(SqlConnection connection = new SqlConnection(ConnectionString))
             {
-
+                SqlCommand command = new SqlCommand("EXEC dbo.GET_ALL_HEARSE", connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add((int)reader["PRIORITY_"]);
+                }
             }
             return result;
         }
 
-        public List<Tuple<int,DateTime,DateTime,string, string>> StartUpEvents()
+        public List<Tuple<int,DateTime,DateTime,int, string, string>> StartUpEvents()
         {
-            List<Tuple<int, DateTime, DateTime, string, string>> result = new List<Tuple<int, DateTime, DateTime, string, string>>();
+            List<Tuple<int, DateTime, DateTime, int, string, string>> result = 
+                new List<Tuple<int, DateTime, DateTime, int, string, string>>();
+
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
+                SqlCommand command = new SqlCommand("EXEC dbo.GET_ALL_EVENTS", connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int surrogateKey = (int)reader["SURROGATE_KEY"];
+                    DateTime start = (DateTime)reader["START_AT"];
+                    DateTime end = (DateTime)reader["END_AT"];
+                    int vehicle = (int)reader["VEHICLE"];
+                    string address = (string)reader["AT_ADDRESS"];
+                    string comment = (string)reader["COMMENT"];
 
+                    Tuple<int, DateTime, DateTime, int, string, string> tuple = 
+                        new Tuple<int, DateTime, DateTime, int, string, string>
+                        (surrogateKey, start, end, vehicle, address, comment);
 
+                    result.Add(tuple);
+                }
             }
             return result;
         }
