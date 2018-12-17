@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace EventLibary
 {
-    public class Rustvogn
+    public class Hearse
     {
         public int Key;
-        public int Prioritet;
+        public int Priority;
         public status Status;
 
-        public Rustvogn(int pri, status sta)
+        public Hearse(int prio, status sta)
         {
             
-            Prioritet = pri;
+            Priority = prio;
             Status = sta;
         }
-        public Rustvogn(int key,int pri, status sta) : this(pri,sta)
+        public Hearse(int key,int prio, status sta) : this(prio,sta)
         {
             Key = key;
         }
         public override bool Equals(object obj)
         {
-            if (obj is Rustvogn)
+            if (obj is Hearse)
             {
-                if (this.Prioritet == (obj as Rustvogn).Prioritet)
+                if (this.Priority == (obj as Hearse).Priority)
                 {
                     return true;
                 }

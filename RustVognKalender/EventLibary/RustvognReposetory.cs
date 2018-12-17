@@ -8,9 +8,9 @@ namespace EventLibary
 {
     public class RustvognReposetory
     {
-        List<Rustvogn> Rustvognen;
+        List<Hearse> Rustvognen;
 
-        public void AddRustvogn(Rustvogn rustvogn)
+        public void AddRustvogn(Hearse rustvogn)
         {
             Rustvognen.Add(rustvogn);
         }
@@ -18,24 +18,24 @@ namespace EventLibary
 
         public void CreateRustvogn(int pri,status status)
         {
-            foreach (Rustvogn i in Rustvognen)
+            foreach (Hearse i in Rustvognen)
             {
-                if (pri == i.Prioritet)
+                if (pri == i.Priority)
                 {
                     throw new MemberAccessException();
                 }
             }
-            Rustvogn rustvogn = new Rustvogn(pri, status);
+            Hearse rustvogn = new Hearse(pri, status);
             Rustvognen.Add(rustvogn);
             
         }
         public void alterRustvogn(int pri, int cpri)
         {
-            foreach (Rustvogn i in Rustvognen)
+            foreach (Hearse i in Rustvognen)
             {
-                if (pri == i.Prioritet)
+                if (pri == i.Priority)
                 {
-                    i.Prioritet = cpri;
+                    i.Priority = cpri;
                 }
             }
 
@@ -43,14 +43,14 @@ namespace EventLibary
 
         public void getRustvogn(int pri)
         {
-            Rustvogn rustvogn = new Rustvogn(pri, status.UnChanged);
+            Hearse rustvogn = new Hearse(pri, status.UnChanged);
             Rustvognen.Add(rustvogn);
         }
         public void DeleteRustvogn(int pri)
         {
-            foreach(Rustvogn i in Rustvognen)
+            foreach(Hearse i in Rustvognen)
             {
-                if (pri == i.Prioritet)
+                if (pri == i.Priority)
                 {
                     i.Status = status.Deleted;
                 }

@@ -16,6 +16,10 @@ namespace Console_Menu
                 "Opret Booking",
                 "Rediger Booking",
                 "Slet Booking",
+                "Updater Database",
+                "Opret Rustvogn",
+                "Rediger Rustvogn",
+                "Slet Rustvogn",
                 "Afslut program"
             };
 
@@ -66,6 +70,22 @@ namespace Console_Menu
                     Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
                     c.DeleteEvent(key);
+                }
+                else if (selectedMenuItem == "Updater Database")
+                {
+
+                }
+                else if (selectedMenuItem == "Opret Rustvogn")
+                {
+
+                }
+                else if (selectedMenuItem == "Rediger Rustvogn")
+                {
+
+                }
+                else if (selectedMenuItem == "Slet Rustvogn")
+                {
+
                 }
                 else if (selectedMenuItem == "Afslut program")
                 {

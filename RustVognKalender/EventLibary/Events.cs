@@ -13,25 +13,25 @@ namespace EventLibary
          Deleted,
          UnChanged
     }
-    public class Begivenhed
+    public class Events
     {
 
         public DateTime Start;
-        public DateTime Slut;
-        public Rustvogn Rustvogn;
-        public string Addresse;
-        public string Kommentar;
+        public DateTime End;
+        public Hearse Hearse;
+        public string Address;
+        public string Comment;
         public status Status;
 
 
-        Begivenhed(DateTime start, DateTime slut, string addresse, string kommentar, status status, Rustvogn rustvogn = null)
+        Events(DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
         {
             Start = start;
-            Slut = slut;
-            Addresse = addresse;
-            Kommentar = kommentar;
+            End = end;
+            Address = address;
+            Comment = comment;
             Status = status;
-            Rustvogn = rustvogn;
+            Hearse = hearse;
         }
         
 

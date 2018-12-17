@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventLibary
 {
-    public class Class1
+    public class EventRepository
     {
     }
 }

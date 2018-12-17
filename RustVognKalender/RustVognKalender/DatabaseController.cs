@@ -44,7 +44,12 @@ namespace RustVognKalender
             }
             return true;
         }
-        
+
+        private string FreeHearse(DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AlterEvent(int PrimaryKey, string start = null, string end = null, bool reservation = false, string Address = null, string Comment = null)
         {
             DateTime Dstart;
