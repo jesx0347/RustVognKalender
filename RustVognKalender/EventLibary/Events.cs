@@ -24,7 +24,7 @@ namespace EventLibary
         public status Status;
 
 
-        Events(DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
+        public Events(DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
         {
             Start = start;
             End = end;
