@@ -152,16 +152,19 @@ namespace RustVognKalender
             return true;
         }
 
-        public List<int> StartUpHearse()
+        public List<Tuple<int,int>> StartUpHearse()
         {
-            List<int> result = new List<int>();
+            List<Tuple<int, int>> result = new List<Tuple<int, int>>();
             using(SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand("EXEC dbo.GET_ALL_HEARSE", connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    result.Add((int)reader["PRIORITY_"]);
+                    int pri = (int)reader["PRIORITY_"];
+                    int key = (int)reader["SURROGATE_KEY"];
+                    Tuple<int, int> tuple = new Tuple<int, int>(key, pri);
+                    result.Add(tuple);
                 }
             }
             return result;

@@ -11,8 +11,9 @@ namespace RustVognKalender
     public class Controller
     {
         DatabaseController DC = new DatabaseController();
-        EventRepository eventRepository = new EventRepository();
         HearseRepository hearseRepository = new HearseRepository();
+        EventRepository eventRepository = new EventRepository(hearseRepository);
+
 
         public bool CreateEventType(bool reservation, string start,string end, string address,string comment)
         {
@@ -27,7 +28,7 @@ namespace RustVognKalender
                 return false;
             }
 
-            return DC.CreateEvent(tstart, tend, reservation, address, comment);
+            return eventRepository.CreateEvent(tstart, tend, address, comment, reservation);
         }
         public bool AlterEvent( string key, bool reservation, string start, string end, string address, string comment)
         {
@@ -58,6 +59,14 @@ namespace RustVognKalender
             {
                 //Console.WriteLine("Invalid nøgle");
                 return false;
+            }
+        }
+
+        public void StartUp()
+        {
+            foreach (Tuple<int,int> item in DC.StartUpHearse())
+            {
+
             }
         }
     }
