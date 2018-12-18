@@ -59,7 +59,7 @@ namespace EventLibary
         public List<Hearse> GetCopyHearses()
         {
             List<Hearse> result = new List<Hearse>();
-            foreach (Hearse item in Rustvognen)
+            foreach (Hearse item in Hearse)
             {
                 result.Add(item);
             }
