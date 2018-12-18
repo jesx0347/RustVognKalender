@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events.cs" />
-    <Compile Include="EventRepository.cs" />
+    <Compile Include="CalendarEntry.cs" />
+    <Compile Include="CalendarEntryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Hearse.cs" />
     <Compile Include="HearseRepository.cs" />

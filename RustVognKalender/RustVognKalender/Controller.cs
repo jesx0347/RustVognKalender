@@ -12,13 +12,13 @@ namespace RustVognKalender
     {
         DatabaseController DC;
         HearseRepository hearseRepository;
-        EventRepository eventRepository;
+        CalendarEntryRepository eventRepository;
 
         public Controller()
         {
             DatabaseController DC = new DatabaseController();
             HearseRepository hearseRepository = new HearseRepository();
-            EventRepository eventRepository = new EventRepository(hearseRepository);
+            CalendarEntryRepository eventRepository = new CalendarEntryRepository(hearseRepository);
         }
 
 
@@ -81,7 +81,7 @@ namespace RustVognKalender
             foreach (Tuple<int, DateTime, DateTime, int, string, string> item in DC.StartUpEvents())
             {
                 Hearse hearse = hearseRepository.GetHearse(item.Item4);
-                Events events = new Events(item.Item1, item.Item2, item.Item3, item.Item5, item.Item6, status.UnChanged, hearse);
+                CalendarEntry events = new CalendarEntry(item.Item1, item.Item2, item.Item3, item.Item5, item.Item6, status.UnChanged, hearse);
             }
         }
 

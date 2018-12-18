@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventLibary
 {
+    // Enumerate values made to indicate what state an event object is in.
     public enum status : byte
     {
          NewlyMade,
@@ -13,7 +14,10 @@ namespace EventLibary
          Deleted,
          UnChanged
     }
-    public class Events
+
+
+    // Creation of variables used by our program to make new Calendar entries (also known as events).
+    public class CalendarEntry
     {
         public int Key;
         public DateTime Start;
@@ -24,7 +28,8 @@ namespace EventLibary
         public status Status;
 
 
-        public Events(int key, DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
+        // Constructor for our calendar entry.
+        public CalendarEntry(int key, DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
         {
             Key = key;
             Start = start;
