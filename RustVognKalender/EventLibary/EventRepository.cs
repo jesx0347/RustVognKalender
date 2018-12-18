@@ -23,28 +23,39 @@ namespace EventLibary
         }
 
 
-        public void CreateEvent(DateTime start, DateTime end, string address, string comment, bool hearseNeded)
+        public bool CreateEvent(DateTime start, DateTime end, string address, string comment, bool hearseNeded)
         {
-            bool free = true;
-            foreach (Hearse i in HearseRepo.GetCopyHearses())
+            if (hearseNeded)
             {
-                foreach(Events E in Eventslist)
+                bool free = true;
+                foreach (Hearse i in HearseRepo.GetCopyHearses())
                 {
-                    if(E.Hearse == i && (( E.Start > end) || E.End < start))
+                    foreach (Events E in Eventslist)
                     {
-                        free = false;
+                        if (E.Hearse == i && ((E.Start > end) || E.End < start))
+                        {
+                            free = false;
+                        }
+                    }
+                    if (free)
+                    {
+                        Events Event = new Events(findHighestKey() + 1, start, end, address, comment, status.NewlyMade, i);
+                        AddEvent(Event);
+                        return true;
+                    }
+                    else
+                    {
+                        free = true;
                     }
                 }
-                if (free)
-                {
-                    Events Event = new Events(findHighestKey() + 1, start, end, address, comment, status.NewlyMade, i);
-                    AddEvent(Event);
-                }
-                else
-                {
-                    free = true;
-                }
             }
+            else
+            {
+                Events Event = new Events(findHighestKey() + 1, start, end, address, comment, status.NewlyMade, null);
+                AddEvent(Event);
+                return true;
+            }
+            return false;
         
             
 
@@ -75,7 +86,7 @@ namespace EventLibary
                     {
                         foreach (Events e in Eventslist)
                         {
-                            if (E.Hearse == i && !())
+                            if (e.Hearse == i && !(ostart<e.Start||ostart>e.End) )
                             {
                                 free = false;
                             }
@@ -97,7 +108,25 @@ namespace EventLibary
                 DateTime oend;
                 if (DateTime.TryParse(end, out oend))
                 {
-                    E.End = oend;
+                    bool free = true;
+                    foreach (Hearse i in HearseRepo.GetCopyHearses())
+                    {
+                        foreach (Events e in Eventslist)
+                        {
+                            if (e.Hearse == i && !(oend > e.Start || oend < e.End))
+                            {
+                                free = false;
+                            }
+                        }
+                        if (free)
+                        {
+                            E.Start = oend;
+                        }
+                        else
+                        {
+                            free = true;
+                        }
+                    }
                 }
             }
             if (!(address == null))
