@@ -71,17 +71,24 @@ namespace EventLibary
             {
                 throw new IndexOutOfRangeException("key not found");
             }
-            if(!(start == null))
+            if (hearse == 0)
+            {
+                E.Hearse = null;
+            }
+            else
+            {
+                E.Hearse = HearseRepo.GetHearse(hearse);
+            }
+            if (!(start == null))
             {
                 DateTime ostart;
                 if (DateTime.TryParse(start,out ostart))
                 {
                     bool free = true;
-                    foreach (Hearse i in HearseRepo.GetCopyHearses())
-                    {
+                    
                         foreach (Events e in Eventslist)
                         {
-                            if (e.Hearse == i && !(ostart<e.Start||ostart>e.End) )
+                            if (e.Hearse == E.Hearse && !(ostart<e.Start||ostart>e.End) )
                             {
                                 free = false;
                             }
@@ -94,7 +101,7 @@ namespace EventLibary
                         {
                             free = true;
                         }
-                    }
+                    
                     
                 }
             }
@@ -104,11 +111,10 @@ namespace EventLibary
                 if (DateTime.TryParse(end, out oend))
                 {
                     bool free = true;
-                    foreach (Hearse i in HearseRepo.GetCopyHearses())
-                    {
+                    
                         foreach (Events e in Eventslist)
                         {
-                            if (e.Hearse == i && !(oend > e.Start || oend < e.End))
+                            if (e.Hearse == E.Hearse && !(oend > e.Start || oend < e.End))
                             {
                                 free = false;
                             }
@@ -121,7 +127,7 @@ namespace EventLibary
                         {
                             free = true;
                         }
-                    }
+                    
                 }
             }
             if (!(address == null))
@@ -132,10 +138,7 @@ namespace EventLibary
             {
                     E.Comment= comment;
             }
-            if (!(hearse == null))
-            {
-                    E.Hearse = hearse;
-            }
+            
             if (!(E.Status == status.NewlyMade))
             {
                 E.Status = status.Changed;
