@@ -35,6 +35,10 @@ namespace EventLibary
                     E = i;
                 }
             }
+            if (E.Key == 0)
+            {
+                throw new IndexOutOfRangeException("key not found");
+            }
             if(!(start == null))
             {
                 DateTime ostart;
@@ -62,6 +66,10 @@ namespace EventLibary
             if (!(hearse == null))
             {
                     E.Hearse = hearse;
+            }
+            if (!(E.Status == status.NewlyMade))
+            {
+                E.Status = status.Changed;
             }
 
 
