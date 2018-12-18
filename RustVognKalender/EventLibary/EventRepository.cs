@@ -57,7 +57,7 @@ namespace EventLibary
             return false;
         }
 
-        public void AlterEvent(int key, string start, string end, string address, string comment, int hearse)
+        public bool AlterEvent(int key, string start, string end, string address, string comment, int hearse)
         {
             Events E = new Events(0,DateTime.Now,DateTime.Now,"","",status.Deleted,null);
             foreach (Events i in Eventslist)
@@ -104,6 +104,10 @@ namespace EventLibary
                     
                     
                 }
+                if(!(E.Start == ostart))
+                {
+                    return false;
+                }
             }
             if (!(end == null))
             {
@@ -127,7 +131,10 @@ namespace EventLibary
                         {
                             free = true;
                         }
-                    
+                }
+                if(E.End == oend)
+                {
+                    return true;
                 }
             }
             if (!(address == null))
@@ -138,11 +145,12 @@ namespace EventLibary
             {
                     E.Comment= comment;
             }
-            
             if (!(E.Status == status.NewlyMade))
             {
                 E.Status = status.Changed;
             }
+            return true;
+
         }
 
         public void StartUpEvent(int key, DateTime start, DateTime end, string address, string comment, Hearse hearse = null)

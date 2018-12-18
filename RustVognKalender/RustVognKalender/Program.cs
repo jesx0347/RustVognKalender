@@ -57,15 +57,15 @@ namespace Console_Menu
                 else if (selectedMenuItem == "Rediger Booking")
                 {
                     Console.Clear();
-                    bool reservation;
+                    int reservation;
                     Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
                     Console.WriteLine("Vælg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen ændring");
                     string start = Console.ReadLine();
                     Console.WriteLine("Vælg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen ændring");
                     string end = Console.ReadLine();
-                    Console.WriteLine("Skal en rustvogn reserveres? [J/N], input er desvære nødvendigt her");
-                    reservation = BooleanChoice();
+                    Console.WriteLine("Vælg den Rustvogn der skal reserveres? [Rustvognens key]");
+                    int.TryParse(Console.ReadLine(),out reservation);
                     Console.WriteLine("Skriv addresse, eller efterlad tom for ingen ændring");
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen ændring");
