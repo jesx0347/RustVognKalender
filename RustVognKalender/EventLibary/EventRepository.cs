@@ -10,7 +10,7 @@ namespace EventLibary
     {
         Dictionary<int,Events> Eventslist;
 
-        public void Addevevent(Events Event)
+        public void AddEvent(Events Event)
         {
             
             Eventslist.Add(Eventslist.OrderBy(x => x.Key).Last().Key+1, Event);
@@ -21,7 +21,7 @@ namespace EventLibary
         {
             Events Event = new Events(start,end,address,comment,status.NewlyMade,hearse);
 
-            Addevevent(Event);
+            AddEvent(Event);
 
         }
         public void alterEvent(int key, string start, string end, string address, string comment, Hearse hearse = null)
@@ -59,11 +59,11 @@ namespace EventLibary
 
         }
 
-        public void getEvent(DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
+        public void GetEvent(DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
         {
             Events Event = new Events(start, end, address, comment, status.UnChanged, hearse);
 
-            Addevevent(Event);
+            AddEvent(Event);
 
         }
         public void DeleteEvent(int pri)

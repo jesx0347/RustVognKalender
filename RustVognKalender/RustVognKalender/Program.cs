@@ -25,8 +25,6 @@ namespace Console_Menu
 
 
 
-
-
             // Remove the flashing line and add functionality to the menu items
             Console.CursorVisible = false;
             while (true)
@@ -34,6 +32,7 @@ namespace Console_Menu
                 string selectedMenuItem = DrawMenu(menuItems);
                 if (selectedMenuItem == "Opret Booking")
                 {
+                    Console.Clear();
                     bool reservation; 
                     Console.WriteLine("Vælg starttidspunkt [dd-mm-yy hh:mm]");
                     string start = Console.ReadLine();
@@ -46,9 +45,17 @@ namespace Console_Menu
                     Console.WriteLine("Skriv kommentar");
                     string comment = Console.ReadLine();
                     c.CreateEventType(reservation,start,end,address,comment);
+                    Console.WriteLine("");
+                    Console.WriteLine("========== Booking blev oprettet ==========");
+                    Console.WriteLine("");
+                    Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
+                    System.Threading.Thread.Sleep(3000);
+                    Console.Clear();
+
                 }
                 else if (selectedMenuItem == "Rediger Booking")
                 {
+                    Console.Clear();
                     bool reservation;
                     Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
@@ -63,13 +70,26 @@ namespace Console_Menu
                     Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen ændring");
                     string comment = Console.ReadLine();
                     c.AlterEvent(key, reservation, start, end, address, comment);
+                    Console.WriteLine("");
+                    Console.WriteLine("========== Booking blev redigeret ==========");
+                    Console.WriteLine("");
+                    Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
+                    System.Threading.Thread.Sleep(3000);
+                    Console.Clear();
 
                 }
                 else if (selectedMenuItem == "Slet Booking")
                 {
+                    Console.Clear();
                     Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
                     c.DeleteEvent(key);
+                    Console.WriteLine("");
+                    Console.WriteLine("========== Booking blev slettet ==========");
+                    Console.WriteLine("");
+                    Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
+                    System.Threading.Thread.Sleep(3000);
+                    Console.Clear();
                 }
                 else if (selectedMenuItem == "Updater Database")
                 {
@@ -77,15 +97,22 @@ namespace Console_Menu
                 }
                 else if (selectedMenuItem == "Opret Rustvogn")
                 {
+                    Console.Clear();
+                    Console.WriteLine("Indtast rustvognens prioritet.");
+                    string hearsePrio = Console.ReadLine();
 
                 }
                 else if (selectedMenuItem == "Rediger Rustvogn")
                 {
-
+                    Console.Clear();
+                    Console.WriteLine("Indtast prioriteten på den rustvogn som skal redigeres.");
+                    string hearsePrio = Console.ReadLine();
                 }
                 else if (selectedMenuItem == "Slet Rustvogn")
                 {
-
+                    Console.Clear();
+                    Console.WriteLine("Indtast prioriteten på den rustvogn som skal fjernes.");
+                    string hearsePrio = Console.ReadLine();
                 }
                 else if (selectedMenuItem == "Afslut program")
                 {
@@ -95,29 +122,17 @@ namespace Console_Menu
             bool BooleanChoice()
             {
                 string input = Console.ReadLine();
-                if (input == "J")
+                if (input == "J" || input == "j")
                 {
                     return true;
                 }
-                else if (input == "j")
-                {
-                    return true;
-                }
-                else if (input == "N")
+                else if (input == "N" || input == "n")
                 {
                     return false;
                 }
-                else if (input == "n")
-                {
-                    return false;
-                }
-                else
-                {
                     Console.WriteLine("J/N");
                     bool ans = BooleanChoice();
                     return ans;
-                }
-
             }
         }
         
@@ -175,10 +190,11 @@ namespace Console_Menu
             {
                 return items[index];
             }
-            else
+            else if (!(ckey.Key == ConsoleKey.Enter || ckey.Key == ConsoleKey.UpArrow || ckey.Key == ConsoleKey.DownArrow))
             {
-                return "";
+                
             }
+            
 
             
 
