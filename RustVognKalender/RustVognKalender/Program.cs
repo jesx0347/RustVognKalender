@@ -25,6 +25,8 @@ namespace Console_Menu
 
 
 
+
+
             // Remove the flashing line and add functionality to the menu items
             Console.CursorVisible = false;
             while (true)
@@ -48,8 +50,7 @@ namespace Console_Menu
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev oprettet ==========");
                     Console.WriteLine("");
-                    Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
-                    System.Threading.Thread.Sleep(3000);
+                    IntermissionToMenu();
                     Console.Clear();
 
                 }
@@ -73,8 +74,7 @@ namespace Console_Menu
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev redigeret ==========");
                     Console.WriteLine("");
-                    Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
-                    System.Threading.Thread.Sleep(3000);
+                    IntermissionToMenu();
                     Console.Clear();
 
                 }
@@ -87,8 +87,7 @@ namespace Console_Menu
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev slettet ==========");
                     Console.WriteLine("");
-                    Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
-                    System.Threading.Thread.Sleep(3000);
+                    IntermissionToMenu();
                     Console.Clear();
                 }
                 else if (selectedMenuItem == "Updater Database")
@@ -101,24 +100,63 @@ namespace Console_Menu
                     Console.WriteLine("Indtast rustvognens prioritet.");
                     string hearsePrio = Console.ReadLine();
 
+
+
+                    Console.WriteLine("");
+                    Console.WriteLine("========== Rustvogn blev prioriteret ==========");
+                    Console.WriteLine("");
+                    IntermissionToMenu();
+                    Console.Clear();
+
                 }
                 else if (selectedMenuItem == "Rediger Rustvogn")
                 {
                     Console.Clear();
                     Console.WriteLine("Indtast prioriteten på den rustvogn som skal redigeres.");
                     string hearsePrio = Console.ReadLine();
+
+
+
+                    Console.WriteLine("");
+                    Console.WriteLine("========== Rustvogn blev redigeret ==========");
+                    Console.WriteLine("");
+                    IntermissionToMenu();
+                    Console.Clear();
                 }
                 else if (selectedMenuItem == "Slet Rustvogn")
                 {
                     Console.Clear();
                     Console.WriteLine("Indtast prioriteten på den rustvogn som skal fjernes.");
                     string hearsePrio = Console.ReadLine();
+
+
+
+                    Console.WriteLine("");
+                    Console.WriteLine("========== Rustvogn blev slettet ==========");
+                    Console.WriteLine("");
+                    IntermissionToMenu();
+                    Console.Clear();
                 }
                 else if (selectedMenuItem == "Afslut program")
                 {
                     Environment.Exit(0);
                 }
             }
+
+
+
+
+
+            void IntermissionToMenu()
+            {
+                Console.WriteLine("Vender tilbage til hovedmenuen om 3 sekunder...");
+                System.Threading.Thread.Sleep(3000);
+            }
+
+
+
+
+
             bool BooleanChoice()
             {
                 string input = Console.ReadLine();
@@ -194,9 +232,8 @@ namespace Console_Menu
             {
                 
             }
-            
 
-            
+
 
 
 
