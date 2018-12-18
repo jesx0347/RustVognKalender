@@ -66,7 +66,13 @@ namespace RustVognKalender
         {
             foreach (Tuple<int,int> item in DC.StartUpHearse())
             {
-
+                Hearse hearse = new Hearse(item.Item2, item.Item1, status.UnChanged);
+                hearseRepository.AddHearse(hearse);
+            }
+            foreach (Tuple<int, DateTime, DateTime, int, string, string> item in DC.StartUpEvents())
+            {
+                Hearse hearse = hearseRepository.GetHearse(item.Item4);
+                Events events = new Events(item.Item1, item.Item2, item.Item3, item.Item5, item.Item6, status.UnChanged, hearse)
             }
         }
     }
