@@ -34,27 +34,28 @@ namespace RustVognKalender
             {
                 return false;
             }
-
             return eventRepository.CreateEvent(tstart, tend, address, comment, reservation);
         }
-        public bool AlterEvent( string key, bool reservation, string start, string end, string address, string comment)
+
+        public bool AlterEvent( string key, int hearse, string start, string end, string address, string comment)
         {
             int ikey;
             if (int.TryParse(key,out ikey))
             {
-                if(start == "") { start = null; }
+                if (start == "") { start = null; }
                 if (end == "") { end = null; }
                 if (address == "") { address = null; }
                 if (comment == "") { comment = null; }
-                return DC.AlterEvent(ikey, start, end, reservation, address, comment);
+
+                return eventRepository.AlterEvent(ikey, start, end, address, comment, hearse);
             }
             else
             {
                 //Console.WriteLine("Invalid nøgle");
                 return false;
             }
-            
         }
+
         public bool DeleteEvent(string key)
         {
             int ikey;

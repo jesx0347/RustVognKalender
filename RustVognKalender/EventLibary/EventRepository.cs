@@ -57,7 +57,7 @@ namespace EventLibary
             return false;
         }
 
-        public void alterEvent(int key, string start, string end, string address, string comment, Hearse hearse = null)
+        public void AlterEvent(int key, string start, string end, string address, string comment, int hearse)
         {
             Events E = new Events(0,DateTime.Now,DateTime.Now,"","",status.Deleted,null);
             foreach (Events i in Eventslist)
