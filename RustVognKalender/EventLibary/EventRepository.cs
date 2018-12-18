@@ -45,12 +45,9 @@ namespace EventLibary
                     free = true;
                 }
             }
-        
-            
-
-            
-
         }
+
+
         public void alterEvent(int key, string start, string end, string address, string comment, Hearse hearse = null)
         {
             Events E = new Events(0,DateTime.Now,DateTime.Now,"","",status.Deleted,null);
