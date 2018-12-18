@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EventLibary;
+
 
 namespace RustVognKalender
 {
     public class Controller
     {
         DatabaseController DC = new DatabaseController();
+        EventRepository eventRepository = new EventRepository();
+        HearseRepository hearseRepository = new HearseRepository();
 
         public bool CreateEventType(bool reservation, string start,string end, string address,string comment)
         {
