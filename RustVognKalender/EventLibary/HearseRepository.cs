@@ -10,7 +10,7 @@ namespace EventLibary
     {
         List<Hearse> Hearse;
 
-        public void AddRustvogn(Hearse hearse)
+        public void AddHearse(Hearse hearse)
         {
             Hearse.Add(hearse);
         }
