@@ -25,7 +25,17 @@ namespace EventLibary
 
         public void CreateEvent(DateTime start, DateTime end, string address, string comment, bool hearseNeded)
         {
-            HearseRepository
+            bool free = false;
+            foreach (Hearse i in HearseRepo.GetCopyHearses())
+            {
+                foreach(Events E in Eventslist)
+                {
+                    if(E.Hearse == i && (E.Start < start ||))
+                    {
+                        
+                    }
+                }
+            }
         
             Events Event = new Events(findHighestKey()+1, start,end,address,comment,status.NewlyMade,hearse);
 
