@@ -92,9 +92,15 @@ namespace EventLibary
             List<Events> tempLists = Eventslist.ToList();
             return tempLists;
         }
-        public void DeleteEvent(int pri)
+        public void DeleteEvent(int key)
         {
-            Eventslist[pri].Status = status.Deleted;
+            foreach (Events i in Eventslist)
+            {
+                if (i.Key == key)
+                {
+                    i.Status = status.Deleted;
+                }
+            }
         }
     }
 }
