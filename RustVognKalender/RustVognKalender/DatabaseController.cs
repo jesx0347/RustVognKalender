@@ -22,22 +22,17 @@ namespace RustVognKalender
             reader.Close();
         }
 
-        public bool CreateEvent(DateTime start, DateTime end, bool reservation, string Address, string Comment)
+        public bool CreateEvent(Events events)
         {
-            string plate = null;
-            if (reservation)
-            {
-                plate = FreeHearse(start, end);
-            }
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
                 command.CommandText = "EXEC dbo.insert_event @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
-                command.Parameters.AddWithValue("@START_AT", start);
-                command.Parameters.AddWithValue("@END_AT", end);
-                command.Parameters.AddWithValue("@VEHICLE", int.Parse(plate));
-                command.Parameters.AddWithValue("@AT_ADDRESS", Address);
-                command.Parameters.AddWithValue("@COMMENT", Comment);
+                command.Parameters.AddWithValue("@START_AT", events.Start);
+                command.Parameters.AddWithValue("@END_AT", events.End);
+                command.Parameters.AddWithValue("@VEHICLE", events.Hearse.Key);
+                command.Parameters.AddWithValue("@AT_ADDRESS", events.Address);
+                command.Parameters.AddWithValue("@COMMENT", events.Comment);
                 command.Connection = connection;
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -45,38 +40,18 @@ namespace RustVognKalender
             return true;
         }
 
-        private string FreeHearse(DateTime start, DateTime end)
+        public bool AlterEvent(Events events)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool AlterEvent(int PrimaryKey, string start = null, string end = null, bool reservation = false, string Address = null, string Comment = null)
-        {
-            DateTime Dstart;
-            DateTime Dend;
-            if(!DateTime.TryParse(start,out Dstart)||start != null)
-            {
-                start = null;
-            }
-            if (!DateTime.TryParse(start, out Dend )||end != null)
-            {
-                end = null;
-            }
-            string plate = null;
-            if (reservation)
-            {
-                plate = FreeHearse(DateTime.Parse(start), DateTime.Parse(end));
-            }
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
                 command.CommandText = "EXEC dbo.update_event @KEY @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
-                command.Parameters.AddWithValue("@KEY", PrimaryKey);
-                command.Parameters.AddWithValue("@START_AT", start);
-                command.Parameters.AddWithValue("@END_AT",end);
-                command.Parameters.AddWithValue("@VEHICLE", int.Parse(plate));
-                command.Parameters.AddWithValue("@AT_ADDRESS", Address);
-                command.Parameters.AddWithValue("@COMMENT", Comment);
+                command.Parameters.AddWithValue("@KEY", events.Key);
+                command.Parameters.AddWithValue("@START_AT", events.Start);
+                command.Parameters.AddWithValue("@END_AT", events.End);
+                command.Parameters.AddWithValue("@VEHICLE", events.Hearse.Key);
+                command.Parameters.AddWithValue("@AT_ADDRESS", events.Address);
+                command.Parameters.AddWithValue("@COMMENT", events.Comment);
                 command.Connection = connection;
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -144,7 +119,39 @@ namespace RustVognKalender
         }
         */
 
+        public bool Update(EventRepository eventRepository, RustvognReposetory rustvognReposetory)
+        {
+            List<Hearse> hearses = rustvognReposetory.GetCopyHearses();
+            foreach (Hearse item in hearses)
+            {
 
+            }
+            foreach (Events item in collection)
+            {
+                if (item.Status == status.Changed)
+                {
+                    AlterEvent(item);
+                }
+                else if (item.Status == status.Deleted)
+                {
+                    DeleteEvent(item.Key);
+                }
+                else if (item.Status == status.NewlyMade)
+                {
+                    CreateEvent(item);
+                }
+                else if (item.Status == status.UnChanged)
+                {
+                    continue;
+                }
+                else
+                {
+                    throw new InvalidDataException("ukendt status enum fil: 'DatabaseController.Update'");
+                }
+            }
+
+            return true;
+        }
 
         public List<int> StartUpHearse()
         {

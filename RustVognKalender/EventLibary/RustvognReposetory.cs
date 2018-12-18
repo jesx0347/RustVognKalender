@@ -8,7 +8,7 @@ namespace EventLibary
 {
     public class RustvognReposetory
     {
-        List<Hearse> Rustvognen;
+        private List<Hearse> Rustvognen;
 
         public void AddRustvogn(Hearse rustvogn)
         {
@@ -55,6 +55,16 @@ namespace EventLibary
                     i.Status = status.Deleted;
                 }
             }
+        }
+
+        public List<Hearse> GetCopyHearses()
+        {
+            List<Hearse> result = new List<Hearse>();
+            foreach (Hearse item in Rustvognen)
+            {
+                result.Add(item);
+            }
+            return result;
         }
     }
 }
