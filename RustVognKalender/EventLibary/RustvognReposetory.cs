@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 
 namespace EventLibary
 {
-    public class HearseRepository
+    public class RustvognReposetory
     {
-        List<Hearse> Hearse;
+        private List<Hearse> Rustvognen;
 
-        public void AddHearse(Hearse hearse)
+        public void AddRustvogn(Hearse rustvogn)
         {
-            Hearse.Add(hearse);
+            Rustvognen.Add(rustvogn);
         }
 
 
-        public void CreateHearse(int prio,status status)
+        public void CreateRustvogn(int pri,status status)
         {
-            foreach (Hearse i in Hearse)
+            foreach (Hearse i in Rustvognen)
             {
-                if (prio == i.Priority)
+                if (pri == i.Priority)
                 {
                     throw new MemberAccessException();
                 }
             }
-            Hearse hearse = new Hearse(prio, status);
-            Hearse.Add(hearse);
+            Hearse rustvogn = new Hearse(pri, status);
+            Rustvognen.Add(rustvogn);
             
         }
-        public void AlterHearse(int prio, int cpri)
+        public void alterRustvogn(int pri, int cpri)
         {
-            foreach (Hearse i in Hearse)
+            foreach (Hearse i in Rustvognen)
             {
-                if (prio == i.Priority)
+                if (pri == i.Priority)
                 {
                     i.Priority = cpri;
                 }
@@ -41,21 +41,22 @@ namespace EventLibary
 
         }
 
-        public void GetHearse(int prio)
+        public void getRustvogn(int pri)
         {
-            Hearse hearse = new Hearse(prio, status.UnChanged);
-            Hearse.Add(hearse);
+            Hearse rustvogn = new Hearse(pri, status.UnChanged);
+            Rustvognen.Add(rustvogn);
         }
-        public void DeleteHearse(int prio)
+        public void DeleteRustvogn(int pri)
         {
-            foreach(Hearse i in Hearse)
+            foreach(Hearse i in Rustvognen)
             {
-                if (prio == i.Priority)
+                if (pri == i.Priority)
                 {
                     i.Status = status.Deleted;
                 }
             }
         }
+
         public List<Hearse> GetCopyHearses()
         {
             List<Hearse> result = new List<Hearse>();

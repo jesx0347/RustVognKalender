@@ -8,31 +8,39 @@ namespace EventLibary
 {
     public class EventRepository
     {
-        Dictionary<int,Events> Eventslist;
+        List<Events> Eventslist;
 
         public void AddEvent(Events Event)
         {
             
-            Eventslist.Add(Eventslist.OrderBy(x => x.Key).Last().Key+1, Event);
+            Eventslist.Add(Event);
         }
 
 
         public void CreateEvent(DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
         {
-            Events Event = new Events(start,end,address,comment,status.NewlyMade,hearse);
+        
+            Events Event = new Events(findHighestKey()+1, start,end,address,comment,status.NewlyMade,hearse);
 
             AddEvent(Event);
 
         }
         public void alterEvent(int key, string start, string end, string address, string comment, Hearse hearse = null)
         {
-            
+            Events E = new Events(0,DateTime.Now,DateTime.Now,"","",status.Deleted,null);
+            foreach (Events i in Eventslist)
+            {
+                if (i.Key == key)
+                {
+                    E = i;
+                }
+            }
             if(!(start == null))
             {
                 DateTime ostart;
                 if (DateTime.TryParse(start,out ostart))
                 {
-                    Eventslist[key].Start = ostart;
+                    E.Start = ostart;
                 }
             }
             if (!(end == null))
@@ -40,37 +48,53 @@ namespace EventLibary
                 DateTime oend;
                 if (DateTime.TryParse(end, out oend))
                 {
-                    Eventslist[key].End = oend;
+                    E.End = oend;
                 }
             }
             if (!(address == null))
             {
-                    Eventslist[key].Address = address;
+                    E.Address = address;
             }
             if (!(comment == null))
             {
-                Eventslist[key].Comment= comment;
+                    E.Comment= comment;
             }
             if (!(hearse == null))
             {
-                Eventslist[key].Hearse = hearse;
+                    E.Hearse = hearse;
             }
 
 
         }
 
-        public void GetEvent(DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
+        public void GetEvent(int key, DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
         {
-            Events Event = new Events(start, end, address, comment, status.UnChanged, hearse);
+            Events Event = new Events(key, start, end, address, comment, status.UnChanged, hearse);
 
             AddEvent(Event);
 
         }
+        public int findHighestKey()
+        {
+            int highest = 0;
+            foreach(Events i in Eventslist)
+            {
+                if(i.Key < highest)
+                {
+                    highest = i.Key;
+                }
+                
+            }
+            return highest;
+        }
+        public List<Events> GetCopyEvents()
+        {
+            List<Events> tempLists = Eventslist.ToList();
+            return tempLists;
+        }
         public void DeleteEvent(int pri)
         {
             Eventslist[pri].Status = status.Deleted;
-
-
         }
     }
 }

@@ -15,7 +15,7 @@ namespace EventLibary
     }
     public class Events
     {
-
+        public int Key;
         public DateTime Start;
         public DateTime End;
         public Hearse Hearse;
@@ -24,8 +24,9 @@ namespace EventLibary
         public status Status;
 
 
-        public Events(DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
+        public Events(int key, DateTime start, DateTime end, string address, string comment, status status, Hearse hearse = null)
         {
+            Key = key;
             Start = start;
             End = end;
             Address = address;
