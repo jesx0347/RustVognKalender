@@ -9,11 +9,11 @@ namespace EventLibary
     public class EventRepository
     {
         List<Events> Eventslist;
-        HearseRepository HearseRepository;
+        HearseRepository HearseRepo;
 
         public EventRepository(HearseRepository hr)
         {
-            HearseRepository = hr;
+            HearseRepo = hr;
         }
 
         public void AddEvent(Events Event)
@@ -25,7 +25,7 @@ namespace EventLibary
 
         public void CreateEvent(DateTime start, DateTime end, string address, string comment, bool hearseNeded)
         {
-            
+            HearseRepository
         
             Events Event = new Events(findHighestKey()+1, start,end,address,comment,status.NewlyMade,hearse);
 
