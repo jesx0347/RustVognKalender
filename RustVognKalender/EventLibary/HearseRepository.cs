@@ -56,5 +56,14 @@ namespace EventLibary
                 }
             }
         }
+        public List<Hearse> GetCopyHearses()
+        {
+            List<Hearse> result = new List<Hearse>();
+            foreach (Hearse item in Rustvognen)
+            {
+                result.Add(item);
+            }
+            return result;
+        }
     }
 }

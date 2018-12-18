@@ -119,14 +119,13 @@ namespace RustVognKalender
         }
         */
 
-        public bool Update(EventRepository eventRepository, RustvognReposetory rustvognReposetory)
+        public bool Update(EventRepository eventRepository, HearseRepository rustvognReposetory)
         {
-            List<Hearse> hearses = rustvognReposetory.GetCopyHearses();
-            foreach (Hearse item in hearses)
+            foreach (Hearse item in rustvognReposetory.GetCopyHearses())
             {
 
             }
-            foreach (Events item in collection)
+            foreach (Events item in eventRepository.GetCopyEvents())
             {
                 if (item.Status == status.Changed)
                 {
@@ -146,7 +145,7 @@ namespace RustVognKalender
                 }
                 else
                 {
-                    throw new InvalidDataException("ukendt status enum fil: 'DatabaseController.Update'");
+                    throw new InvalidDataException("Ukendt status enum. Fil: 'DatabaseController.Update'");
                 }
             }
 

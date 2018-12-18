@@ -87,7 +87,7 @@ namespace EventLibary
             }
             return highest;
         }
-        public List<Events> getCopyEvents()
+        public List<Events> GetCopyEvents()
         {
             List<Events> tempLists = Eventslist.ToList();
             return tempLists;
