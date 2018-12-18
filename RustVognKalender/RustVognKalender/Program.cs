@@ -190,10 +190,11 @@ namespace Console_Menu
             {
                 return items[index];
             }
-            else
+            else if (!(ckey.Key == ConsoleKey.Enter || ckey.Key == ConsoleKey.UpArrow || ckey.Key == ConsoleKey.DownArrow))
             {
-                return "";
+                
             }
+            
 
             
 
