@@ -37,17 +37,18 @@ namespace RustVognKalender
             return eventRepository.CreateEvent(tstart, tend, address, comment, reservation);
         }
 
-        public bool AlterEvent( string key, int hearse, string start, string end, string address, string comment)
+        public bool AlterEvent( string key, string hearse, string start, string end, string address, string comment)
         {
             int ikey;
-            if (int.TryParse(key,out ikey))
+            int ihearse;
+            if (int.TryParse(key,out ikey) && int.TryParse(hearse, out ihearse))
             {
                 if (start == "") { start = null; }
                 if (end == "") { end = null; }
                 if (address == "") { address = null; }
                 if (comment == "") { comment = null; }
 
-                return eventRepository.AlterEvent(ikey, start, end, address, comment, hearse);
+                return eventRepository.AlterEvent(ikey, start, end, address, comment, ihearse);
             }
             else
             {
