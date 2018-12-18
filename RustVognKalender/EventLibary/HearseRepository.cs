@@ -51,8 +51,8 @@ namespace EventLibary
         }
 
 
-        // Gets a hearse of the prio key parameter
-        public void GetHearse(int prio)
+        // creates hearse at startup
+        public void StartUpHearse(int prio)
         {
             Hearse hearse = new Hearse(prio, status.UnChanged);
             Hearse.Add(hearse);
@@ -69,6 +69,17 @@ namespace EventLibary
                     i.Status = status.Deleted;
                 }
             }
+        }
+        public Hearse GetHearse(int key)
+        {
+            foreach(Hearse i in Hearse)
+            {
+                if (i.Key == key)
+                {
+                    return i;
+                }
+            }
+            return null;
         }
 
         

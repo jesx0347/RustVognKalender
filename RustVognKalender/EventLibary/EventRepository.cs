@@ -25,21 +25,30 @@ namespace EventLibary
 
         public void CreateEvent(DateTime start, DateTime end, string address, string comment, bool hearseNeded)
         {
-            bool free = false;
+            bool free = true;
             foreach (Hearse i in HearseRepo.GetCopyHearses())
             {
                 foreach(Events E in Eventslist)
                 {
-                    if(E.Hearse == i && (E.Start < start ||))
+                    if(E.Hearse == i && (( E.Start > end) || E.End < start))
                     {
-                        
+                        free = false;
                     }
+                }
+                if (free)
+                {
+                    Events Event = new Events(findHighestKey() + 1, start, end, address, comment, status.NewlyMade, i);
+                    AddEvent(Event);
+                }
+                else
+                {
+                    free = true;
                 }
             }
         
-            Events Event = new Events(findHighestKey()+1, start,end,address,comment,status.NewlyMade,hearse);
+            
 
-            AddEvent(Event);
+            
 
         }
         public void alterEvent(int key, string start, string end, string address, string comment, Hearse hearse = null)
@@ -61,7 +70,26 @@ namespace EventLibary
                 DateTime ostart;
                 if (DateTime.TryParse(start,out ostart))
                 {
-                    E.Start = ostart;
+                    bool free = true;
+                    foreach (Hearse i in HearseRepo.GetCopyHearses())
+                    {
+                        foreach (Events e in Eventslist)
+                        {
+                            if (E.Hearse == i && !())
+                            {
+                                free = false;
+                            }
+                        }
+                        if (free)
+                        {
+                            E.Start = ostart;
+                        }
+                        else
+                        {
+                            free = true;
+                        }
+                    }
+                    
                 }
             }
             if (!(end == null))
@@ -92,7 +120,7 @@ namespace EventLibary
 
         }
 
-        public void GetEvent(int key, DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
+        public void StartUpEvent(int key, DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
         {
             Events Event = new Events(key, start, end, address, comment, status.UnChanged, hearse);
 
