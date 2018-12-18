@@ -18,7 +18,6 @@ namespace EventLibary
 
         public void AddEvent(Events Event)
         {
-            
             Eventslist.Add(Event);
         }
 
@@ -56,12 +55,8 @@ namespace EventLibary
                 return true;
             }
             return false;
-        
-            
-
-            
-
         }
+
         public void alterEvent(int key, string start, string end, string address, string comment, Hearse hearse = null)
         {
             Events E = new Events(0,DateTime.Now,DateTime.Now,"","",status.Deleted,null);
@@ -145,8 +140,6 @@ namespace EventLibary
             {
                 E.Status = status.Changed;
             }
-
-
         }
 
         public void StartUpEvent(int key, DateTime start, DateTime end, string address, string comment, Hearse hearse = null)
@@ -154,8 +147,8 @@ namespace EventLibary
             Events Event = new Events(key, start, end, address, comment, status.UnChanged, hearse);
 
             AddEvent(Event);
-
         }
+
         public int findHighestKey()
         {
             int highest = 0;
@@ -165,15 +158,16 @@ namespace EventLibary
                 {
                     highest = i.Key;
                 }
-                
             }
             return highest;
         }
+
         public List<Events> GetCopyEvents()
         {
             List<Events> tempLists = Eventslist.ToList();
             return tempLists;
         }
+
         public void DeleteEvent(int key)
         {
             foreach (Events i in Eventslist)
