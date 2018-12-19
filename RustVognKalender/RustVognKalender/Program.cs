@@ -11,6 +11,7 @@ namespace Console_Menu
         private static void Main(string[] args)
         {
             Controller c = new Controller();
+            
             // Create a list of menu items
             List<string> menuItems = new List<string>() {
                 "Opret Booking",
@@ -25,8 +26,8 @@ namespace Console_Menu
 
 
 
-
-
+            // Startup skal køres først
+            c.StartUp();
             // Remove the flashing line and add functionality to the menu items
             Console.CursorVisible = false;
             while (true)
@@ -64,13 +65,13 @@ namespace Console_Menu
                     string start = Console.ReadLine();
                     Console.WriteLine("Vaelg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen aendring");
                     string end = Console.ReadLine();
-                    Console.WriteLine("Vælg den Rustvogn der skal reserveres? [Rustvognens key]");
-                    int.TryParse(Console.ReadLine(),out reservation);
+                    Console.WriteLine("Vælg den Rustvogn der skal reserveres? [Rustvognens key eller 0]");
+                    string reservation = Console.ReadLine();
                     Console.WriteLine("Skriv addresse, eller efterlad tom for ingen ændring");
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen aendring");
                     string comment = Console.ReadLine();
-                    //c.AlterEvent(key, reservation, start, end, address, comment);
+                    c.AlterEvent(key, reservation, start, end, address, comment);
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev redigeret ==========");
                     Console.WriteLine("");
@@ -92,7 +93,7 @@ namespace Console_Menu
                 }
                 else if (selectedMenuItem == "Updater Database")
                 {
-
+                    c.Update();
                 }
                 else if (selectedMenuItem == "Opret Rustvogn")
                 {
@@ -139,6 +140,7 @@ namespace Console_Menu
                 }
                 else if (selectedMenuItem == "Afslut program")
                 {
+                    c.Update();
                     Environment.Exit(0);
                 }
             }

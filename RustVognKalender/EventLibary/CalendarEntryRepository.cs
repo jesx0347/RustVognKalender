@@ -252,15 +252,17 @@ namespace EventLibary
 
 
         // Method for deleting an event, by running through the list until it find the object, with the same key as the one provided in the parameter.
-        public void DeleteEvent(int key)
+        public bool DeleteEvent(int key)
         {
             foreach (CalendarEntry i in Eventslist)
             {
                 if (i.Key == key)
                 {
                     i.Status = status.Deleted;
+                    return true;
                 }
             }
+            return false;
         }
     }
 }

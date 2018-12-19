@@ -18,7 +18,7 @@ namespace RustVognKalender
         {
             DC = new DatabaseController();
             hearseRepository = new HearseRepository();
-            eventRepository = new EventRepository(hearseRepository);
+            eventRepository = new CalendarEntryRepository(hearseRepository);
         }
 
 
