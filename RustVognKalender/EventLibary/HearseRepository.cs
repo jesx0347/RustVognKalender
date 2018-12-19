@@ -9,7 +9,7 @@ namespace EventLibary
     public class HearseRepository
     {
         // Create a list of hearses
-        List<Hearse> Hearse = new List<Hearse>();
+        private List<Hearse> Hearse;
 
 
         // Adds a hearse to the list
@@ -51,7 +51,7 @@ namespace EventLibary
         }
 
 
-        // creates hearse at startup
+        // Creates hearse at startup
         public void StartUpHearse(int prio)
         {
             Hearse hearse = new Hearse(prio, status.UnChanged);
@@ -70,6 +70,9 @@ namespace EventLibary
                 }
             }
         }
+
+
+        // Method for retrieving a hearse.
         public Hearse GetHearse(int key)
         {
             foreach(Hearse i in Hearse)

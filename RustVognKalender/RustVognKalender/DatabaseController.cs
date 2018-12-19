@@ -22,7 +22,7 @@ namespace RustVognKalender
             reader.Close();
         }
 
-        public bool CreateEvent(Events events)
+        public bool CreateEvent(CalendarEntry events)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -40,7 +40,7 @@ namespace RustVognKalender
             return true;
         }
 
-        public bool AlterEvent(Events events)
+        public bool AlterEvent(CalendarEntry events)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -119,13 +119,13 @@ namespace RustVognKalender
         }
         */
 
-        public bool Update(EventRepository eventRepository, HearseRepository rustvognReposetory)
+        public bool Update(CalendarEntryRepository eventRepository, HearseRepository rustvognReposetory)
         {
             foreach (Hearse item in rustvognReposetory.GetCopyHearses())
             {
 
             }
-            foreach (Events item in eventRepository.GetCopyEvents())
+            foreach (CalendarEntry item in eventRepository.GetCopyEvents())
             {
                 if (item.Status == status.Changed)
                 {

@@ -36,9 +36,9 @@ namespace Console_Menu
                 {
                     Console.Clear();
                     bool reservation; 
-                    Console.WriteLine("VÊlg starttidspunkt [dd-mm-yy hh:mm]");
+                    Console.WriteLine("Vaelg starttidspunkt [dd-mm-yy hh:mm]");
                     string start = Console.ReadLine();
-                    Console.WriteLine("VÊlg sluttidspunkt [dd-mm-yy hh:mm]");
+                    Console.WriteLine("Vaelg sluttidspunkt [dd-mm-yy hh:mm]");
                     string end = Console.ReadLine();
                     Console.WriteLine("Skal en rustvogn reserveres? [J/N]");
                     reservation = BooleanChoice();
@@ -60,17 +60,17 @@ namespace Console_Menu
                     
                     Console.WriteLine("Skriv key");
                     string key = Console.ReadLine();
-                    Console.WriteLine("VÊlg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen Êndring");
+                    Console.WriteLine("Vaelg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen aendring");
                     string start = Console.ReadLine();
-                    Console.WriteLine("VÊlg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen Êndring");
+                    Console.WriteLine("Vaelg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen aendring");
                     string end = Console.ReadLine();
-                    Console.WriteLine("VÊlg den Rustvogn der skal reserveres? [Rustvognens key]");
-                    string reservation = Console.ReadLine();
-                    Console.WriteLine("Skriv addresse, eller efterlad tom for ingen Êndring");
+                    Console.WriteLine("Vaelg den Rustvogn der skal reserveres? [Rustvognens key]");
+                    int.TryParse(Console.ReadLine(),out reservation);
+                    Console.WriteLine("Skriv addresse, eller efterlad tom for ingen aendring");
                     string address = Console.ReadLine();
-                    Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen Êndring");
+                    Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen aendring");
                     string comment = Console.ReadLine();
-                    c.AlterEvent(key, reservation, start, end, address, comment);
+                    //c.AlterEvent(key, reservation, start, end, address, comment);
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev redigeret ==========");
                     Console.WriteLine("");
@@ -112,7 +112,7 @@ namespace Console_Menu
                 else if (selectedMenuItem == "Rediger Rustvogn")
                 {
                     Console.Clear();
-                    Console.WriteLine("Indtast prioriteten pÂ den rustvogn som skal redigeres.");
+                    Console.WriteLine("Indtast prioriteten pÅEden rustvogn som skal redigeres.");
                     string hearsePrio = Console.ReadLine();
 
 
@@ -126,7 +126,7 @@ namespace Console_Menu
                 else if (selectedMenuItem == "Slet Rustvogn")
                 {
                     Console.Clear();
-                    Console.WriteLine("Indtast prioriteten pÂ den rustvogn som skal fjernes.");
+                    Console.WriteLine("Indtast prioriteten pÅEden rustvogn som skal fjernes.");
                     string hearsePrio = Console.ReadLine();
 
 
