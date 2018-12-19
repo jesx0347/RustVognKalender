@@ -16,9 +16,9 @@ namespace RustVognKalender
 
         public Controller()
         {
-            DatabaseController DC = new DatabaseController();
-            HearseRepository hearseRepository = new HearseRepository();
-            EventRepository eventRepository = new EventRepository(hearseRepository);
+            DC = new DatabaseController();
+            hearseRepository = new HearseRepository();
+            eventRepository = new EventRepository(hearseRepository);
         }
 
 
@@ -62,7 +62,7 @@ namespace RustVognKalender
             int ikey;
             if (int.TryParse(key, out ikey))
             {
-                return DC.DeleteEvent(ikey);
+                return eventRepository.DeleteEvent(ikey);
             }
             else
             {

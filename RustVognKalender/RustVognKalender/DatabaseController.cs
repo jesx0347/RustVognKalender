@@ -130,6 +130,7 @@ namespace RustVognKalender
                 if (item.Status == status.Changed)
                 {
                     AlterEvent(item);
+                    item.Status = status.UnChanged;
                 }
                 else if (item.Status == status.Deleted)
                 {
@@ -138,6 +139,7 @@ namespace RustVognKalender
                 else if (item.Status == status.NewlyMade)
                 {
                     CreateEvent(item);
+                    item.Status = status.UnChanged;
                 }
                 else if (item.Status == status.UnChanged)
                 {

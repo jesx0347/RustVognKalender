@@ -8,7 +8,7 @@ namespace EventLibary
 {
     public class EventRepository
     {
-        List<Events> Eventslist;
+        List<Events> Eventslist = new List<Events>();
         HearseRepository HearseRepo;
 
         public EventRepository(HearseRepository hr)
@@ -179,15 +179,17 @@ namespace EventLibary
             return tempLists;
         }
 
-        public void DeleteEvent(int key)
+        public bool DeleteEvent(int key)
         {
             foreach (Events i in Eventslist)
             {
                 if (i.Key == key)
                 {
                     i.Status = status.Deleted;
+                    return true;
                 }
             }
+            return false;
         }
     }
 }
