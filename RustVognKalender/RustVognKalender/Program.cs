@@ -64,9 +64,9 @@ namespace Console_Menu
                     string start = Console.ReadLine();
                     Console.WriteLine("Vaelg sluttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen aendring");
                     string end = Console.ReadLine();
-                    Console.WriteLine("Vaelg den Rustvogn der skal reserveres? [Rustvognens key]");
+                    Console.WriteLine("Vælg den Rustvogn der skal reserveres? [Rustvognens key]");
                     int.TryParse(Console.ReadLine(),out reservation);
-                    Console.WriteLine("Skriv addresse, eller efterlad tom for ingen aendring");
+                    Console.WriteLine("Skriv addresse, eller efterlad tom for ingen ændring");
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen aendring");
                     string comment = Console.ReadLine();
