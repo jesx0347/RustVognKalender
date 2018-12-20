@@ -46,9 +46,11 @@ namespace EventLibary
                 {
                     foreach (CalendarEntry _Event in Eventslist)
                     {
-                        if (_Event.Hearse == i && ((_Event.Start > end) || _Event.End < start))
+                        
+                        if (_Event.Hearse == i && ((_Event.Start > start && _Event.Start < end)|| (_Event.End > start && _Event.End < end)|| (_Event.Start < start && _Event.End > end)))
                         {
                             Available = false;
+                            Console.WriteLine(_Event.Key + " " + _Event.Start + " " + _Event.End);
                         }
                     }
 
