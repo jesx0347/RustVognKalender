@@ -235,7 +235,7 @@ namespace EventLibary
             // foreach loop to check every object in the list...
             foreach(CalendarEntry i in Eventslist)
             {
-                if(i.Key < highest)
+                if(i.Key > highest)
                 {
                     highest = i.Key;
                 }

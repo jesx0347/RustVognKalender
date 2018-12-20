@@ -26,6 +26,18 @@ namespace RustVognKalender
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
+                if (events.Hearse == null){ 
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "EXEC dbo.insert_event2 @START_AT, @END_AT, @AT_ADDRESS, @COMMENT";
+                command.Parameters.AddWithValue("@START_AT", events.Start);
+                command.Parameters.AddWithValue("@END_AT", events.End);
+                command.Parameters.AddWithValue("@AT_ADDRESS", events.Address);
+                command.Parameters.AddWithValue("@COMMENT", events.Comment);
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }else
+            { 
                 SqlCommand command = new SqlCommand();
                 command.CommandText = "EXEC dbo.insert_event @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
                 command.Parameters.AddWithValue("@START_AT", events.Start);
@@ -36,6 +48,7 @@ namespace RustVognKalender
                 command.Connection = connection;
                 connection.Open();
                 command.ExecuteNonQuery();
+            }
             }
             return true;
         }
