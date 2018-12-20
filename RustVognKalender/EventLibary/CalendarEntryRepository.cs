@@ -9,16 +9,17 @@ namespace EventLibary
     public class CalendarEntryRepository
     {
         // Create a list of Events
-        List<CalendarEntry> Eventslist;
+        private List<CalendarEntry> Eventslist;
 
 
         // Here we create a variable using the HearseRepository class
-        HearseRepository HearseRepo;
+        private HearseRepository HearseRepo;
 
 
         // We make a new method called EventRepository that takes the parameter HearseRepository which we assign to "hr".
         public CalendarEntryRepository(HearseRepository hr)
         {
+            Eventslist = new List<CalendarEntry>();
             HearseRepo = hr;
         }
 

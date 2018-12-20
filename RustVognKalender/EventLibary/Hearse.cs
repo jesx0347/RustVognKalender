@@ -36,6 +36,8 @@ namespace EventLibary
         {
             if (obj is Hearse)
             {
+                return this.Priority == (obj as Hearse).Priority;
+                /*
                 if (this.Priority == (obj as Hearse).Priority)
                 {
                     return true;
@@ -44,6 +46,7 @@ namespace EventLibary
                 {
                     return false;
                 }
+                */
             }
             else
             {
