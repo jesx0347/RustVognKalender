@@ -227,7 +227,7 @@ namespace EventLibary
 
 
         // Method for finding the highest key (perhaps for finding the maximum number of objects in the Event list?)
-        public int FindHighestKey()
+        private int FindHighestKey()
         {
             // int variable made and set to 0.
             int highest = 0;
