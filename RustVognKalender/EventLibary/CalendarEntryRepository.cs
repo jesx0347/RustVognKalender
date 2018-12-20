@@ -46,9 +46,11 @@ namespace EventLibary
                 {
                     foreach (CalendarEntry _Event in Eventslist)
                     {
-                        if (_Event.Hearse == i && ((_Event.Start > end) || _Event.End < start))
+                        
+                        if (!(_Event.Status == status.Deleted) && _Event.Hearse == i && !(_Event.End<start || _Event.Start>end))
                         {
                             Available = false;
+                            
                         }
                     }
 
@@ -64,6 +66,7 @@ namespace EventLibary
                         Available = true;
                     }
                 }
+                return false;
             }
 
             // If a hearse is not needed. It will simply call the method AddEvent to add the event to the list.
@@ -73,7 +76,7 @@ namespace EventLibary
                 AddEvent(_Event);
                 return true;
             }
-            return false;
+            
         }
 
 
@@ -125,15 +128,15 @@ namespace EventLibary
                     bool Available = true;
                     
                     // Run a foreach loop to check every calendarEntry(e) in the Event list.
-                        foreach (CalendarEntry e in Eventslist)
-                        {
+                        //foreach (CalendarEntry e in Eventslist)
+                        //{
 
-                        // If the entry(e) is equal to the _Event.Hearse AND is not equal to; the ostart value being before the Start parameter OR later than the End parameter, return false.
-                            if (e.Hearse == _Event.Hearse && !(ostart<e.Start||ostart>e.End) )
-                            {
-                                Available = false;
-                            }
-                        }
+                        //// If the entry(e) is equal to the _Event.Hearse AND is not equal to; the ostart value being before the Start parameter OR later than the End parameter, return false.
+                        //    if (e.Hearse == _Event.Hearse && !(ostart<e.Start||ostart>e.End) )
+                        //    {
+                        //        Available = false;
+                        //    }
+                        //}
 
                         // If not, simply set the Start value to the ostart variable.
                         if (Available)
@@ -169,15 +172,15 @@ namespace EventLibary
                     bool Available = true;
                     
                     // Foreach loop of calendarEntry(e) in the event list
-                        foreach (CalendarEntry e in Eventslist)
-                        {
+                        //foreach (CalendarEntry e in Eventslist)
+                        //{
 
-                        // If the entry(e) is equal to the _Event.Hearse AND is not equal to; the oend value being before the Start parameter OR later than the End parameter, return false.
-                            if (e.Hearse == _Event.Hearse && !(oend > e.Start || oend < e.End))
-                            {
-                                Available = false;
-                            }
-                        }
+                        //// If the entry(e) is equal to the _Event.Hearse AND is not equal to; the oend value being before the Start parameter OR later than the End parameter, return false.
+                        //    if (e.Hearse == _Event.Hearse && !(oend > e.Start || oend < e.End))
+                        //    {
+                        //        Available = false;
+                        //    }
+                        //}
 
 
                         if (Available)
@@ -235,7 +238,7 @@ namespace EventLibary
             // foreach loop to check every object in the list...
             foreach(CalendarEntry i in Eventslist)
             {
-                if(i.Key < highest)
+                if(i.Key > highest)
                 {
                     highest = i.Key;
                 }

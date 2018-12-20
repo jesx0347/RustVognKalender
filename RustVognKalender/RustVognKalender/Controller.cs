@@ -82,6 +82,7 @@ namespace RustVognKalender
             {
                 Hearse hearse = hearseRepository.GetHearse(item.Item4);
                 CalendarEntry events = new CalendarEntry(item.Item1, item.Item2, item.Item3, item.Item5, item.Item6, status.UnChanged, hearse);
+                eventRepository.AddEvent(events);
             }
         }
 
