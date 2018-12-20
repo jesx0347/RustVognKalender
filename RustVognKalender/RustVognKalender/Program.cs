@@ -47,7 +47,11 @@ namespace Console_Menu
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv en kommentar");
                     string comment = Console.ReadLine();
-                    c.CreateEventType(reservation,start,end,address,comment);
+                    if (!c.CreateEventType(reservation, start, end, address, comment))
+                    {
+                        Console.WriteLine("noget gik galt, prøv igen [tryk enter for at fortsætte]");
+                        Console.ReadLine();
+                    }
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev oprettet ==========");
                     Console.WriteLine("");
@@ -71,7 +75,11 @@ namespace Console_Menu
                     string address = Console.ReadLine();
                     Console.WriteLine("Skriv en kommentar, eller efterlad tom for ingen aendring");
                     string comment = Console.ReadLine();
-                    c.AlterEvent(key, reservation, start, end, address, comment);
+                    if (!c.AlterEvent(key, reservation, start, end, address, comment))
+                    {
+                        Console.WriteLine("noget gik galt, prøv igen [tryk enter for at fortsætte]");
+                        Console.ReadLine();
+                    }
                     Console.WriteLine("");
                     Console.WriteLine("========== Booking blev redigeret ==========");
                     Console.WriteLine("");

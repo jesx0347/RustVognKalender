@@ -47,10 +47,10 @@ namespace EventLibary
                     foreach (CalendarEntry _Event in Eventslist)
                     {
                         
-                        if (_Event.Hearse == i && ((_Event.Start > start && _Event.Start < end)|| (_Event.End > start && _Event.End < end)|| (_Event.Start < start && _Event.End > end)))
+                        if (!(_Event.Status == status.Deleted) && _Event.Hearse == i && !(_Event.End<start || _Event.Start>end))
                         {
                             Available = false;
-                            Console.WriteLine(_Event.Key + " " + _Event.Start + " " + _Event.End);
+                            
                         }
                     }
 
@@ -66,6 +66,7 @@ namespace EventLibary
                         Available = true;
                     }
                 }
+                return false;
             }
 
             // If a hearse is not needed. It will simply call the method AddEvent to add the event to the list.
@@ -75,7 +76,7 @@ namespace EventLibary
                 AddEvent(_Event);
                 return true;
             }
-            return false;
+            
         }
 
 
