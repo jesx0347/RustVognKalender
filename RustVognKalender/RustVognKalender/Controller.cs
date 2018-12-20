@@ -10,9 +10,9 @@ namespace RustVognKalender
 {
     public class Controller
     {
-        DatabaseController DC;
-        HearseRepository hearseRepository;
-        CalendarEntryRepository eventRepository;
+        private DatabaseController DC;
+        private HearseRepository hearseRepository;
+        private CalendarEntryRepository eventRepository;
 
         public Controller()
         {

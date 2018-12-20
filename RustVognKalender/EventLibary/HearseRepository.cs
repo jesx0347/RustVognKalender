@@ -9,7 +9,7 @@ namespace EventLibary
     public class HearseRepository
     {
         // Create a list of hearses
-       private List<Hearse> Hearse = new List<Hearse>();
+        private List<Hearse> Hearse = new List<Hearse>();
 
 
         // Adds a hearse to the list
