@@ -43,9 +43,9 @@ namespace Console_Menu
                     string end = Console.ReadLine();
                     Console.WriteLine("Skal en rustvogn reserveres? [J/N]");
                     reservation = BooleanChoice();
-                    Console.WriteLine("Skriv addresse");
+                    Console.WriteLine("Skriv en addresse");
                     string address = Console.ReadLine();
-                    Console.WriteLine("Skriv kommentar");
+                    Console.WriteLine("Skriv en kommentar");
                     string comment = Console.ReadLine();
                     c.CreateEventType(reservation,start,end,address,comment);
                     Console.WriteLine("");
@@ -59,7 +59,7 @@ namespace Console_Menu
                 {
                     Console.Clear();
                     
-                    Console.WriteLine("Skriv key");
+                    Console.WriteLine("Indtast identifikationsnøglen på begivenheden.");
                     string key = Console.ReadLine();
                     Console.WriteLine("Vaelg starttidspunkt [dd-mm-yy hh:mm], eller efterlad tom for ingen aendring");
                     string start = Console.ReadLine();
@@ -67,9 +67,9 @@ namespace Console_Menu
                     string end = Console.ReadLine();
                     Console.WriteLine("Vælg den Rustvogn der skal reserveres? [Rustvognens key eller 0]");
                     string reservation = Console.ReadLine();
-                    Console.WriteLine("Skriv addresse, eller efterlad tom for ingen ændring");
+                    Console.WriteLine("Skriv en addresse, eller efterlad tom for ingen ændring");
                     string address = Console.ReadLine();
-                    Console.WriteLine("Skriv kommentar, eller efterlad tom for ingen aendring");
+                    Console.WriteLine("Skriv en kommentar, eller efterlad tom for ingen aendring");
                     string comment = Console.ReadLine();
                     c.AlterEvent(key, reservation, start, end, address, comment);
                     Console.WriteLine("");
@@ -82,7 +82,7 @@ namespace Console_Menu
                 else if (selectedMenuItem == "Slet Booking")
                 {
                     Console.Clear();
-                    Console.WriteLine("Skriv key");
+                    Console.WriteLine("Indtast identifikationsnøglen på begivenheden.");
                     string key = Console.ReadLine();
                     c.DeleteEvent(key);
                     Console.WriteLine("");
@@ -100,7 +100,7 @@ namespace Console_Menu
                     Console.Clear();
                     Console.WriteLine("Indtast rustvognens prioritet.");
                     string hearsePrio = Console.ReadLine();
-
+                  
 
 
                     Console.WriteLine("");

@@ -159,6 +159,7 @@ namespace RustVognKalender
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
             using(SqlConnection connection = new SqlConnection(ConnectionString))
             {
+                connection.Open();
                 SqlCommand command = new SqlCommand("EXEC dbo.GET_ALL_HEARSE", connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -179,6 +180,7 @@ namespace RustVognKalender
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
+                connection.Open();
                 SqlCommand command = new SqlCommand("EXEC dbo.GET_ALL_EVENTS", connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -186,7 +188,12 @@ namespace RustVognKalender
                     int surrogateKey = (int)reader["SURROGATE_KEY"];
                     DateTime start = (DateTime)reader["START_AT"];
                     DateTime end = (DateTime)reader["END_AT"];
-                    int vehicle = (int)reader["VEHICLE"];
+                    //int vehicle;
+                    //if (int.TryParse(reader["VEHICLE"].ToString(), out vehicle ))
+                    //{
+
+                    //}
+                    int vehicle = reader["VEHICLE"] == System.DBNull.Value ? default(int) : (int)reader["VEHICLE"];
                     string address = (string)reader["AT_ADDRESS"];
                     string comment = (string)reader["COMMENT"];
 
