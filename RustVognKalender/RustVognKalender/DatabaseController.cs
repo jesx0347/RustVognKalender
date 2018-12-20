@@ -58,10 +58,10 @@ namespace RustVognKalender
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "EXEC dbo.update_event @KEY @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
+                command.CommandText = "EXEC dbo.update_event @KEY, @START_AT, @END_AT, @VEHICLE, @AT_ADDRESS, @COMMENT";
                 command.Parameters.AddWithValue("@KEY", events.Key);
-                command.Parameters.AddWithValue("@START_AT", events.Start);
-                command.Parameters.AddWithValue("@END_AT", events.End);
+                command.Parameters.AddWithValue("@START_AT", events.Start.ToString());
+                command.Parameters.AddWithValue("@END_AT", events.End.ToString());
                 command.Parameters.AddWithValue("@VEHICLE", events.Hearse.Key);
                 command.Parameters.AddWithValue("@AT_ADDRESS", events.Address);
                 command.Parameters.AddWithValue("@COMMENT", events.Comment);
