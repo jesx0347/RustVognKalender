@@ -214,6 +214,20 @@ namespace EventLibary
             if (!(_Event.Status == status.NewlyMade))
             {
                 _Event.Status = status.Changed;
+                
+            }
+            foreach (CalendarEntry i in Eventslist)
+            {
+                // If loop to check if the item's key is equal to the key given in the method parameter, then that event referred to in the AlterEvent method is set to be equal to the _Event object.
+                if (i.Key == key)
+                {
+                    i.Status = _Event.Status;
+                    i.Hearse = _Event.Hearse;
+                    i.Address = _Event.Address;
+                    i.Comment = _Event.Comment;
+                    i.End = _Event.End;
+                    i.Start=_Event.Start;
+                }
             }
             return true;
 
