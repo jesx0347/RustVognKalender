@@ -24,6 +24,7 @@ namespace RustVognKalender
 
         public bool CreateEvent(CalendarEntry events)
         {
+             
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 if (events.Hearse == null){ 
@@ -66,6 +67,7 @@ namespace RustVognKalender
                 command.Parameters.AddWithValue("@AT_ADDRESS", events.Address);
                 command.Parameters.AddWithValue("@COMMENT", events.Comment);
                 command.Connection = connection;
+                //Console.WriteLine(events.Key + " " + events.Start.ToString() + " " + events.End.ToString() + " " + events.Hearse.Key + " " + events.Address + " " + events.Comment);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

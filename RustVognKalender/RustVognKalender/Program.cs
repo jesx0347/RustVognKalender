@@ -99,7 +99,7 @@ namespace Console_Menu
                     IntermissionToMenu();
                     Console.Clear();
                 }
-                else if (selectedMenuItem == "Updater Database")
+                else if (selectedMenuItem == "Opdater Database")
                 {
                     c.Update();
                 }
